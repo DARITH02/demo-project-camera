@@ -166,13 +166,37 @@
       });
 
       // Add to cart
-      document.getElementById("add-to-cart").addEventListener("click", () => {
-        alert(`Added ${quantity} x ${product.name} to cart!`);
-      });
+      // document.getElementById("add-to-cart").addEventListener("click", () => {
+      //   alert(`Added ${quantity} x ${product.name} to cart!`);
+      // });
 
       // Back button
       document.getElementById("back-btn").addEventListener("click", () => {
         window.history.back();
+      });
+
+      document.getElementById("add-to-cart").addEventListener("click", () => {
+        // Get existing cart from localStorage or empty array
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // Check if product already in cart
+        const existingIndex = cart.findIndex((item) => item.id === product.id);
+        if (existingIndex >= 0) {
+          cart[existingIndex].quantity += quantity; // increase quantity if exists
+        } else {
+          cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            quantity: quantity,
+            image: product.image,
+          });
+        }
+
+        // Save back to localStorage
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        alert(`Added ${quantity} x ${product.name} to cart!`);
       });
     </script>
   </body>
