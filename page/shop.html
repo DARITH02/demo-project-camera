@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Shop Camera</title>
+</head>
+
+<body class="bg-[#f7f7f7]">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-[#f7f7f7] shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <span class="text-2xl font-bold text-[#0071e3]">CAMERA-SHOP</span>
+
+                <div class="hidden md:flex space-x-8">
+                    <a href="../index.html" class="text-gray-700 hover:text-[#0071e3] font-medium">Home</a>
+                    <a href="/page/shop.html" class="text-[#0071e3] font-medium">Shop</a>
+                    <a href="/page/about.html" class="text-gray-700 hover:text-[#0071e3] font-medium">About</a>
+                    <a href="/page/contact.html" class="text-gray-700 hover:text-[#0071e3] font-medium">Contact</a>
+                </div>
+
+                <div class="relative">
+                    <button id="cart-button" class="text-[#0071e3]">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M3 3h2l.4 2M7 13h14l-1.35 6H6.65L5 6H21"></path>
+                        </svg>
+                    </button>
+                    <span id="cart-count"
+                        class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Shop Hero -->
+    <section class="bg-[#f7f7f7] py-35">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#0071e3] mb-6">Explore Our Collection Camera</h1>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
+                A vast array of camera collections can be explored online, ranging from antique and vintage film cameras
+                to the latest digital models and unique instant cameras.
+            </p>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Filters -->
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-4">
+                <h2 class="text-3xl font-bold text-[#0071e3] mb-4 md:mb-0">Our Collection</h2>
+                <div class="flex gap-4">
+                    <!-- Category Filter -->
+                    <select id="categoryFilter"
+                        class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-[#0071e3] transition">
+                        <option value="">All Categories</option>
+                        <option value="camera-sony">Camera-Sony</option>
+                        <option value="camera-nikon">Camera-Nikon</option>
+                        <option value="camera-canon">Camera-Canon</option>
+                        <option value="camera-fujifilm">Camera-Fujifilm</option>
+                        <option value="camera-lumix">Camera-Panasonic Lumix</option>
+                        <option value="camera-olympus">Camera-Olympus</option>
+                        <option value="camera-gopro">Camera-GoPro</option>
+                        <option value="camera-leica">Camera-Leica</option>
+                        <option value="camera-pentax">Camera-Pentax</option>
+                    </select>
+
+                    <!-- Sort by Price -->
+                    <select id="sortPrice"
+                        class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-[#0071e3] transition">
+                        <option value="">Sort by : Featured</option>
+                        <option value="low-high">Price: Low to High</option>
+                        <option value="high-low">Price: High to Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- ALL Product Grid -->
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <!-- Camera-Sony -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-sony"
+                    data-price="499.00" data-price="499.99">
+                    <img src="https://cdn11.bigcommerce.com/s-1nktaieb4v/images/stencil/1280x1280/products/36768/75010/sony-zv-e1-mirrorless-digital-camera__03999.1753257620.jpg?c=1"
+                        alt="Sony ZV-E1" class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Sony ZV-E1</h3>
+                    <p class="text-gray-600 mb-2">The Sony ZV-E1 is a compact, full-frame mirrorless camera designed
+                        specifically for high-quality video content creation.</p>
+                    <p class="text-lg font-bold text-gray-700">$499.99</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Sony ZV-E1" data-price="499.99">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Sony ZV-E1" data-price="499.99">View
+                    </button>
+                </div>
+                <!-- Camera-Sony -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-sony"
+                    data-price="1999.00" data-price="1999.00">
+                    <img src="https://www.laorlaorcamerashop.com/Content/Upload/Item/f5822f71-5ba9-4e42-abcc-e7f35d41e572.JPG"
+                        alt="Sony A7 III" class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Sony A7-III</h3>
+                    <p class="text-gray-600 mb-2">The Sony A7 III is a full-frame mirrorless camera released in 2018,
+                        known for its balance of features, performance, and value.</p>
+                    <p class="text-lg font-bold text-gray-700">$1,999.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Sony A7 III" data-price="1999.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Sony A7 III" data-price="1999.00">View
+                    </button>
+                </div>
+                <!-- Camera-Sony -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-sony"
+                    data-price="1799.00" data-price="1799.00">
+                    <img src="https://www.laorlaorcamerashop.com/Content/Upload/ItemImage/9130093c-636e-4abc-9628-6e1e82eeb36d.jpg"
+                        alt="Sony A7 C" class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Sony A7 C</h3>
+                    <p class="text-gray-600 mb-2">Sony A7C Review | Read This Before You Buy It!The Sony A7C is a
+                        compact, full-frame mirrorless camera designed for creators,
+                    </p>
+                    <p class="text-lg font-bold text-gray-700">$1,799.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Sony A7 C" data-price="1799.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Sony A7 C" data-price="1799.00">Viewt
+                    </button>
+                </div>
+                <!-- Camera-Sony -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-sony"
+                    data-price="3499.00" data-price="3499.00">
+                    <img src="https://www.mpb.com/media-service/803838fa-2ae4-48f2-9189-40cc6ad97b4a" alt="Sony A7R IV"
+                        class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Sony A7 R IV</h3>
+                    <p class="text-gray-600 mb-2">The Sony A7R IV is a high-resolution, full-frame mirrorless camera
+                        featuring a 61-megapixel sensor that provides </p>
+                    <p class="text-lg font-bold text-gray-700">$3,499.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Sony A7R IV" data-price="3499.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Sony A7R IV" data-price="3499.00">View
+                    </button>
+                </div>
+                <!-- Camera-Sony -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-sony"
+                    data-price="1799.00" data-price="1,799.00">
+                    <img src="https://thecamerastore.com/cdn/shop/files/Sony-a6700-18-135mm-Kit.jpg?v=1758821692"
+                        alt="Sony A6700" class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Sony A6700</h3>
+                    <p class="text-gray-600 mb-2">The Sony a6700 is a compact, hybrid APS-C mirrorless camera that
+                        excels at both photos and videos, </p>
+                    <p class="text-lg font-bold text-gray-700">$1,799.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Sony A7R IV" data-price="1,799.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Sony A7R IV" data-price="1,799.00">View
+                    </button>
+                </div>
+                <!-- Camera-Sony -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-sony"
+                    data-price="899.00" data-price="3499.00">
+                    <img src="https://www.billuphotos.com/wp-content/uploads/2023/10/sony-6400.jpg" alt="Sony A6400"
+                        class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Sony A6400</h3>
+                    <p class="text-gray-600 mb-2">The Sony a6400 is a compact, mirrorless APS-C camera known for its
+                        high-speed autofocus, including Real-Time Eye AF and Tracking, </p>
+                    <p class="text-lg font-bold text-gray-700">$899.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Sony A7R IV" data-price="899.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Sony A7R IV" data-price="899.00">View
+                    </button>
+                </div>
+                <!-- Camera-Canon -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-canon"
+                    data-price="699.00" data-price="699.00">
+                    <img src="https://www.camera-warehouse.com.au/media/catalog/product/c/a/canon_m200kisbk_8.jpg?quality=75&bg-color=255,255,255&fit=bounds&height=102&width=102&canvas=102:102"
+                        alt="Canon EOS M200" class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Canon EOS M200</h3>
+                    <p class="text-gray-600 mb-2">The Canon EOS M200 is a compact, entry-level mirrorless camera with a
+                        24.1MP APS-C CMOS sensor, making it suitable for high-quality</p>
+                    <p class="text-lg font-bold text-gray-700">$699.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Canon EOS M200" data-price="699.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Canon EOS M200" data-price="699.00">View
+                    </button>
+                </div>
+                <!-- Camera-Canon -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-canon"
+                    data-price="999.00" data-price="999.00">
+                    <img src="https://www.laorlaorcamerashop.com/Content/Upload/ItemImage/1b45adcc-d532-43b6-a385-d0552b4ad9c7.jpg"
+                        alt="Canon EOS M200" class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Canon EOS R10</h3>
+                    <p class="text-gray-600 mb-2">The Canon EOS R10 is an APS-C mirrorless camera designed for photo and
+                        video content creators, </p>
+                    <p class="text-lg font-bold text-gray-700">$999.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Canon EOS R10" data-price="999.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Canon EOS R10" data-price="999.00">View
+                    </button>
+                </div>
+                <!-- Camera-Canon -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-canon"
+                    data-price="1499.00" data-price="1,499.00">
+                    <img src="https://image.coolblue.nl/max/700xauto/products/1881140" alt="Canon EOS M200"
+                        class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Canon EOS R8</h3>
+                    <p class="text-gray-600 mb-2">The Canon EOS R8 is a lightweight, full-frame mirrorless camera
+                        designed for hybrid photo and video creators. </p>
+                    <p class="text-lg font-bold text-gray-700">$1,499.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Canon EOS R8" data-price="1,499.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Canon EOS R8" data-price="1,499.00">View
+                    </button>
+                </div>
+                <!-- Camera-Canon -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-canon"
+                    data-price="2499.00" data-price="2,499.00">
+                    <img src="https://i1.adis.ws/i/canon/5666C028_EOS-R6-Mark-II_01?w=940&bg=rgb(245,246,246)&fmt=webp&qlt=100&sm=aspect&aspect=1:1"
+                        alt="Canon EOS M200" class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Canon EOS 6 Mark II</h3>
+                    <p class="text-gray-600 mb-2">The Canon EOS R6 Mark II is a high-performance hybrid mirrorless
+                        camera featuring a new 24.2MP full-frame CMOS sensor and the powerful </p>
+                    <p class="text-lg font-bold text-gray-700">$2,499.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Canon EOS 6 Mark II" data-price="1,499.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Canon EOS 6 Mark II" data-price="1,499.00">View
+                    </button>
+                </div>
+
+                <!-- Camera-Nikon 1 -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-nikon"
+                    data-price="599.99" data-price="599.99">
+                    <img src="https://www.laorlaorcamerashop.com/Content/Upload/ItemImage/43745b5d-8205-4785-a427-a3304aeb36cb.jpg"
+                        alt="Nikon Zf" class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Nikon Zf</h3>
+                    <p class="text-gray-600 mb-2">The Nikon Zf is a full-frame mirrorless camera with a retro design,
+                        combining classic aesthetics with modern features like a 24.5MP sensor, </p>
+                    <p class="text-lg font-bold text-gray-700">$599.99</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Nikon Zf" data-price="599.99">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Nikon Zf" data-price="599.99">View
+                    </button>
+                </div>
+                <!-- Camera-Nikon 2-->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-nikon"
+                    data-price="2849.00" data-price="2849.00">
+                    <img src="https://cdn1.rootspanel.com/uploads/cdc2153ddc1ac4c3bdc8db2c9f950b0aeb77bed5/image/file/6799/webshop_normal_b02b471d-7c43-4696-9128-e8befcc01885.jpg"
+                        alt="Nikon Z6 III" class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Nikon Z6 III</h3>
+                    <p class="text-gray-600 mb-2">The Nikon Z6 III is a full-frame mirrorless camera with a 24.5MP
+                        partially-stacked sensor, an EXPEED 7 processor, and advanced</p>
+                    <p class="text-lg font-bold text-gray-700">$2,849.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Nikon Z6 III" data-price="2849.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Nikon Z6 III" data-price="2849.00">View
+                    </button>
+                </div>
+                <!-- Camera-Nikon 3-->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-nikon"
+                    data-price="909.95" data-price="909.95">
+                    <img src="https://www.nikon-asia.com/media/wysiwyg/products/cameras/mirrorless/nikon-z50ii/d-hero-nikon-z50ii-mirrorless-camera-nikon-cameras-lenses-accessories.png"
+                        alt="Nikon Z50 II" class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Nikon Z50 II</h3>
+                    <p class="text-gray-600 mb-2">The Nikon Z50 II is a compact APS-C mirrorless camera designed for
+                        creators, featuring a 20.9MP sensor, the EXPEED 7 processor</p>
+                    <p class="text-lg font-bold text-gray-700">$909.95</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Nikon Z50 II" data-price="909.95">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Nikon Z50 II" data-price="909.95">View
+                    </button>
+                </div>
+
+                <!-- Camera-Fujifilm -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-fujifilm"
+                    data-price="799.00" data-price="799.00">
+                    <img src="https://preview.redd.it/is-the-x-t30-ii-a-good-buy-v0-wdoctgf7xiuc1.jpeg?auto=webp&s=6e2495029a633c16a2c069653e03751737722dc8"
+                        alt="Fujifilm X-T30" class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Fujifilm X-T30</h3>
+                    <p class="text-gray-600 mb-2">The Fujifilm X-T30 is a compact mirrorless camera that features a
+                        26.1MP APS-C X-Trans CMOS 4 sensor and X-Processor 4,</p>
+                    <p class="text-lg font-bold text-gray-700">$799.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Fujifilm X-T30" data-price="799.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Fujifilm X-T30" data-price="799.00">View
+                    </button>
+                </div>
+                <!-- Camera-GoPro -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-gopro"
+                    data-price="499.00" data-price="499.00">
+                    <img src="https://m.media-amazon.com/images/I/617sGSjmC1L._AC_UF894,1000_QL80_.jpg"
+                        alt="GoPro Hero 11" class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">GoPro Hero 11</h3>
+                    <p class="text-gray-600 mb-2">The GoPro Hero 11 Black is a waterproof action camera with a new,
+                        larger sensor that captures 8:7 aspect ratio video and 5.3K60 resolution.</p>
+                    <p class="text-lg font-bold text-gray-700">$499.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="GoPro Hero 11" data-price="499.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="GoPro Hero 11" data-price="499.00">View
+                    </button>
+                </div>
+                <!-- Camera-Pentax -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-pentax"
+                    data-price="649.00" data-price="649.00">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgmSJumpITBk-wcyrh_894XaZpPAQfhPAItyriPOzXE6jIEwR54Pnq92Fou27ROP9jKxk&usqp=CAU"
+                        alt="Pentax K-70" class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Pentax K-70</h3>
+                    <p class="text-gray-600 mb-2">The Pentax K-70 is a compact, weather-sealed DSLR camera designed for
+                        outdoor photography, featuring a 24.2MP APS-C CMOS </p>
+                    <p class="text-lg font-bold text-gray-700">$649.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Pentax K-70" data-price="649.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Pentax K-70" data-price="649.00">View
+                    </button>
+                </div>
+                <!-- Camera-Olympus -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-olympus"
+                    data-price="699.00" data-price="699.00">
+                    <img src="https://media.foto-erhardt.de/images/product_images/original_images/513/olympus-om-d-e-m10-mark-iv-gehause-silber-159635684951360304.jpg"
+                        alt="Olympus OM-D E-M10 Mark IV" class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Olympus OM-D E-M10 Mark IV</h3>
+                    <p class="text-gray-600 mb-2">The Olympus OM-D E-M10 Mark IV is a compact, lightweight mirrorless
+                        camera ideal for beginners and travelers,</p>
+                    <p class="text-lg font-bold text-gray-700">$699.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Olympus OM-D E-M10 Mark IV" data-price="699.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Olympus OM-D E-M10 Mark IV" data-price="699.00">View
+                    </button>
+                </div>
+                <!-- Camera-Leica -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-leica"
+                    data-price="4995.00" data-price="4995.00">
+                    <img src="https://www.leica-camera-france.fr/sites/default/files/inline-images/Leica%20Q2_front_lens%20hood_RGB.jpg"
+                        alt="Leica Q2" class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Leica Q2</h3>
+                    <p class="text-gray-600 mb-2">The Leica Q2 is a full-frame, fixed-lens digital camera known for its
+                        high-resolution 47.3MP sensor,fast f/1.7 Summilux 28mm prime lens</p>
+                    <p class="text-lg font-bold text-gray-700">$4,995.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Leica Q2" data-price="4995.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Leica Q2" data-price="4995.00">View
+                    </button>
+                </div>
+                <!-- Camera-Panasonic lumix -->
+                <div class="product bg-[#f7f7f7] rounded-xl shadow-md p-6" data-category="camera-lumix data-price"
+                    data-price="1299.00" data-price="1299.00">
+                    <img src="https://shop11058.sfstatic.io/upload_dir/shop/panasonic-gh5.jpg" alt="Panasonic Lumix GH5"
+                        class="w-full h-60 object-cover rounded-lg mb-4" />
+                    <h3 class="text-xl font-semibold text-[#0071e3]">Panasonic Lumix GH5</h3>
+                    <p class="text-gray-600 mb-2">The Panasonic Lumix GH5 is a high-end Micro Four Thirds mirrorless
+                        camera known for its professional video capabilities,</p>
+                    <p class="text-lg font-bold text-gray-700">$1,299.00</p>
+                    <button
+                        class="add-to-cart mt-4 bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Panasonic Lumix GH5" data-price="1299.00">Add to Cart
+                    </button>
+                    <button
+                        class="view mt-4 bg-[#0071e3] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+                        data-name="Panasonic Lumix GH5" data-price="1299.00">View
+                    </button>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0071e3] text-white py-10">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
+            <!-- Logo & Brand -->
+            <div class="flex items-center gap-3">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M8 12h8"></path>
+                </svg>
+                <span class="text-2xl font-bold">KEM-SHOP</span>
+            </div>
+            <!-- Footer Links -->
+            <div class="flex flex-wrap gap-6 text-base font-medium">
+                <a href="index.html" class="hover:underline">Home</a>
+                <a href="#" class="hover:underline">Shop</a>
+                <a href="about.html" class="hover:underline">About</a>
+                <a href="contact.html" class="hover:underline">Contact</a>
+                <a href="#" class="hover:underline">Privacy Policy</a>
+            </div>
+            <!-- Social Icons somes-->
+            <div class="flex gap-4">
+                <!-- Icorn Facebook -->
+                <a href="https://www.facebook.com/share/1BhhFRWsum/?mibextid=wwXIfr" aria-label="Facebook"
+                    class="hover:text-[#f7f2ee] transition">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.127 8.438 9.877v-6.987h-2.54v-2.89h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.987C18.343 21.127 22 17 22 12z" />
+                    </svg>
+                </a>
+                <!-- Icorn Telegram -->
+                <a href="https://t.me/Sroin_smos" target="_blank" aria-label="Telegram"
+                    class=" hover:text-[#0088cc] transition duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M9.999 15.172l-.387 4.327c.553 0 .793-.237 1.08-.521l2.588-2.47 5.367 3.925c.984.54 1.684.256 1.938-.91l3.507-16.426c.36-1.671-.604-2.322-1.66-1.92L1.23 10.38c-1.61.63-1.585 1.54-.274 1.95l4.946 1.545L17.57 6.84c.603-.39 1.152-.175.7.25L9.999 15.172z" />
+                    </svg>
+                </a>
+                <!-- Icorn Twiiter -->
+                <a href="https://x.com/Sony" aria-label="Twitter" class="hover:text-[#f7f2ee] transition">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M22.46 6c-.77.35-1.6.59-2.47.7a4.3 4.3 0 001.88-2.37 8.59 8.59 0 01-2.72 1.04A4.28 4.28 0 0016.11 4c-2.37 0-4.29 1.92-4.29 4.29 0 .34.04.67.11.99C7.69 9.13 4.07 7.13 1.64 4.16c-.37.63-.58 1.36-.58 2.14 0 1.48.75 2.79 1.89 3.56a4.28 4.28 0 01-1.94-.54v.05c0 2.07 1.47 3.8 3.42 4.19-.36.1-.74.16-1.13.16-.28 0-.54-.03-.8-.08.54 1.68 2.11 2.9 3.97 2.93A8.6 8.6 0 012 19.54a12.13 12.13 0 006.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19-.01-.38-.02-.57A8.72 8.72 0 0024 5.5a8.6 8.6 0 01-2.54.7z" />
+                    </svg>
+                </a>
+                <!-- Icorn Instagram -->
+                <a href="https://www.instagram.com/ksrorn58?igsh=MXhjbmZpdzRvanRqcg%3D%3D&utm_source=qr"
+                    aria-label="Instagram" class="hover:text-[#f7f2ee] transition">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 110 10.5 5.25 5.25 0 010-10.5zm0 1.5a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5zm5.25.75a1 1 0 110 2 1 1 0 010-2z" />
+                    </svg>
+                </a>
+                <!-- Icorn Tiktok -->
+                <a href="https://www.tiktok.com/@sony" aria-label="TikTok" class="hover:text-[#f7f2ee] transition">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12.75 2h2.25a4.5 4.5 0 004.5 4.5v2.25a6.75 6.75 0 01-4.5-1.65v7.65a5.25 5.25 0 11-5.25-5.25h.75v2.25h-.75a3 3 0 100 6 3 3 0 003-3V2z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="mt-8 text-center text-sm text-[#f7f2ee]">
+            © 2023 CAMERA-SHOP. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ========== CART SYSTEM ==========
+        const buttons = document.querySelectorAll(".add-to-cart");
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartCount = document.getElementById("cart-count");
+        const cartButton = document.getElementById("cart-button");
+
+        function updateCartCount() {
+            let count = 0;
+            cart.forEach(item => count += item.quantity);
+            cartCount.textContent = count;
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+
+        updateCartCount();
+
+        buttons.forEach(button => {
+            button.addEventListener("click", () => {
+                const name = button.getAttribute("data-name");
+                const price = parseFloat(button.getAttribute("data-price"));
+                const image = button.closest('.product').querySelector('img').src;
+
+                const existing = cart.find(item => item.name === name);
+                if (existing) {
+                    existing.quantity += 1;
+                } else {
+                    cart.push({ name, price, quantity: 1, image });
+                }
+
+                updateCartCount();
+
+                // SweetAlert2 Notification
+                Swal.fire({
+                    title: "Added to Cart!",
+                    text: `${name} has been added to your cart.`,
+                    icon: "success",
+                    confirmButtonColor: "#0071e3",
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            });
+        });
+
+        // SweetAlert2 confirmation before going to cart
+        cartButton.addEventListener("click", () => {
+            Swal.fire({
+                title: "Go to Cart?",
+                text: "Would you like to view your cart items?",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Yes, take me there",
+                cancelButtonText: "Stay here",
+                confirmButtonColor: "#0071e3"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/page/cart.html";
+                }
+            });
+        });
+
+        // ========== CATEGORY FILTER + SORT ==========
+        const categorySelect = document.getElementById('categoryFilter');
+        const productGrid = document.getElementById('productGrid');
+        const sortSelect = document.getElementById('sortPrice');
+
+        categorySelect.addEventListener('change', filterAndSort);
+        sortSelect.addEventListener('change', filterAndSort);
+
+        function filterAndSort() {
+            const selectedCategory = categorySelect.value;
+            const sortOption = sortSelect.value;
+
+            let products = Array.from(productGrid.children);
+
+            // Filter by category
+            products.forEach(product => {
+                const category = product.getAttribute('data-category');
+                product.style.display = (selectedCategory === "" || category === selectedCategory)
+                    ? "block"
+                    : "none";
+            });
+
+            // Sort visible products by price
+            let visibleProducts = products.filter(p => p.style.display !== "none");
+            visibleProducts.sort((a, b) => {
+                const priceA = parseFloat(a.getAttribute('data-price'));
+                const priceB = parseFloat(b.getAttribute('data-price'));
+                if (sortOption === 'low-high') return priceA - priceB;
+                if (sortOption === 'high-low') return priceB - priceA;
+                return 0;
+            });
+
+            visibleProducts.forEach(p => productGrid.appendChild(p));
+        }
+
+        document.querySelectorAll('.view').forEach(button => {
+        button.addEventListener('click', function() {
+            const name = this.dataset.name;
+            const price = this.dataset.price;
+            const description = this.dataset.description;
+            const images = this.dataset.images;
+
+            const url = `view.html?name=${encodeURIComponent(name)}&price=${price}&description=${encodeURIComponent(description)}&images=${encodeURIComponent(images)}`;
+            window.location.href = url;
+        });
+    });
+
+
+    </script>
+</body>
+
+</html>

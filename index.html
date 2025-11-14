@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        /* Hover effect on card */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* .container.h1{
+            text-align: center;
+            justify-content: center;
+        } */
+    </style>
+
+    <style>
+        .carousel-item img {
+            max-height: 800px;
+            object-fit: cover;
+            width: 100%;
+            margin: auto;
+        }
+
+        .carousel-caption {
+            background: rgba(26, 22, 217, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+
+    <style>
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-marquee {
+            animation: marquee 18s linear infinite;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Camera-Store</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link " href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="About.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Shop.html">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Camera.html">Camera</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Service.html">Service</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <form class="d-flex">
+            <input type="text" class="form-control me-2" placeholder="search">
+            <button type="button" class="btn btn-outline-info">Search</button>
+        </form>
+    </nav> -->
+    <!-- Navbar -->
+    <nav class=" fixed top-0 left-0 w-full bg-[#f7f7f7] shadow-md ">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-[#0071e3]">CAMERA-SHOP</span>
+                </div>
+                <!-- Nav Links -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="./index.html" class="text-[#0071e3] font-bold transition">Home</a>
+                    <a href="/page/shop.html" class="text-gray-700 hover:text-[#0071e3] font-medium transition">Shop</a>
+                    <a href="/page/about.html"
+                        class="text-gray-700 hover:text-[#0071e3] font-medium transition">About</a>
+                    <a href="/page/contact.html"
+                        class="text-gray-700 hover:text-[#0071e3] font-medium transition">Contact</a>
+                </div>
+                <form class="flex items-center space-x-2">
+                    <button type="submit"
+                        class="bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3] border border-[#0071e3] transition">
+                        Login
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- hero section -->
+    <section class="bg-[#f7f7f7] py-20">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+            <!-- Text Content -->
+            <div class="flex-1">
+                <h1 class="text-5xl md:text-6xl font-extrabold text-[#0071e3] mb-6 leading-tight">
+                    Discover Your Collections<br>
+                    <span class="text-gray-800">With Camera Shop</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-8">
+                    Shop the latest trends in shirts. Quality, comfort, and style for every occasion.
+                </p>
+                <a href="#"
+                    class="inline-block bg-[#0071e3] text-white px-8 py-3 rounded-lg font-semibold shadow hover:bg-[#f7f2ee] hover:text-[#0071e3] border border-[#0071e3] transition">
+                    Shop Now
+                </a>
+            </div>
+            <!-- Hero Image -->
+            <div class="flex-1 flex justify-center">
+                <img src="https://i.pinimg.com/736x/c1/d1/62/c1d162670647078ed0f5163a75ccc4b0.jpg"
+                    alt="CameraShop Hero" class="rounded-xl shadow-lg w-full h-85 max-w-md object-cover">
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
+
+<!-- some cotagories -->
+<section class="py-16 bg-white" >
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-[#0071e3] mb-10 text-center">Categories</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            <!-- Category Card 1 -->
+            <div
+                class="bg-[#f7f7f7] rounded-xl shadow-md p-6 flex flex-col items-center hover:scale-105 hover:shadow-lg transition">
+                <!-- Camera Icon -->
+                <svg class="w-12 h-12 text-[#0071e3] mb-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 9a3 3 0 100 6 3 3 0 000-6zm8-3h-2.586l-.707-.707A1 1 0 0016 5h-8a1 1 0 00-.707.293L6.586 6H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2zm0 12H4V8h3.172l1-1h7.656l1 1H20v10z" />
+                </svg>
+
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Camera-Sony</h3>
+                <p class="text-gray-600 text-center">High-quality Sony cameras for professional and casual photography.
+                </p>
+            </div>
+            <!-- Category Card 2 -->
+            <div
+                class="bg-[#f7f7f7] rounded-xl shadow-md p-6 flex flex-col items-center hover:scale-105 hover:shadow-lg transition">
+                <!-- Nikon Camera Icon -->
+                <svg class="w-12 h-12 text-[#0071e3] mb-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z" />
+                </svg>
+
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Camera Nikon</h3>
+                <p class="text-gray-600 text-center">Explore Nikon cameras for precision and professional photography.
+                </p>
+            </div>
+
+            <!-- Category Card 3 -->
+            <div
+                class="bg-[#f7f7f7] rounded-xl shadow-md p-6 flex flex-col items-center hover:scale-105 hover:shadow-lg transition">
+                <!-- Canon Camera Icon -->
+                <svg class="w-12 h-12 text-[#D31C1C] mb-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z" />
+                </svg>
+
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Camera-Canon</h3>
+                <p class="text-gray-600 text-center">Explore Canon cameras for reliable and high-quality photography.
+                </p>
+            </div>
+
+            <!-- Category Card 4 -->
+            <div
+                class="bg-[#f7f7f7] rounded-xl shadow-md p-6 flex flex-col items-center hover:scale-105 hover:shadow-lg transition">
+                <!-- Lumix Camera Icon -->
+                <svg class="w-12 h-12 text-gray-800 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z" />
+                </svg>
+
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Camera - Lumix</h3>
+                <p class="text-gray-600 text-center">Explore Lumix cameras for advanced photography and crisp image
+                    quality.</p>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<!-- popular special card in shop -->
+<section class="py-16 bg-[#f7f7f7]">
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-[#0071e3] mb-10 text-center">Popular Camera</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                <img src="https://i.pinimg.com/1200x/49/40/ca/4940cac3d85394d4a9217f2d358f7f90.jpg " alt="Sony ZV-E1"
+                    class="w-full h-60 object-cover">
+                <div class="p-6 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-semibold text-gray-800">Sony ZV-E1</h3>
+                        <span class="text-[#0071e3] text-lg font-bold">$599.99</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 flex-1">The Sony ZV-E1 is a compact, full-frame, interchangeable-lens
+                        mirrorless camera designed for vlogging and content creation, featuring a 12.</p>
+                    <div class="flex items-center">
+                        <!-- Star Icon -->
+                        <svg class="w-5 h-5 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.921-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.197-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.049 9.393c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.966z" />
+                        </svg>
+                        <span class="text-gray-700 font-medium">4.5</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                <img src="https://i.pinimg.com/736x/13/c4/83/13c483406ff89bd345a710420ec209bb.jpg" alt="Canon EOS M200 "
+                    class="w-full h-60 object-cover">
+                <div class="p-6 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-semibold text-gray-800">Canon EOS M200</h3>
+                        <span class="text-[#0071e3] text-lg font-bold">$499.99</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 flex-1">The Canon EOS M200 is a lightweight, entry-level mirrorless
+                        camera with an interchangeable EF-M lens mount, designed for beginners to step up from
+                        smartphone photography.</p>
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.921-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.197-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.049 9.393c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.966z" />
+                        </svg>
+                        <span class="text-gray-700 font-medium">4.7</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                <img src="https://i.pinimg.com/1200x/a2/fd/64/a2fd6447482cd67e63c025a1c0cc8271.jpg "
+                    alt="Nikon Zf initial" class="w-full h-60 object-cover">
+                <div class="p-6 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-semibold text-gray-800">Nikon Zf initial</h3>
+                        <span class="text-[#0071e3] text-lg font-bold">$599.99</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 flex-1">The Nikon Zf is a full-frame mirrorless camera with a retro
+                        design, featuring a 24.5-megapixel sensor and a powerful EXPEED 7 processor, similar to the Z8
+                        and Z9.</p>
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.921-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.197-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.049 9.393c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.966z" />
+                        </svg>
+                        <span class="text-gray-700 font-medium">4.6</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                <img src="https://i.pinimg.com/1200x/d5/bd/47/d5bd47321d6e14ede960e3fe666f8a7f.jpg" alt="Denim Shirt"
+                    class="w-full h-60 object-cover">
+                <div class="p-6 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-semibold text-gray-800">Nikon D3500 digital</h3>
+                        <span class="text-[#0071e3] text-lg font-bold">$499</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 flex-1">The Nikon D3500 is a lightweight, beginner-friendly DSLR camera
+                        featuring a 24.2MP DX-format CMOS sensor, an EXPEED 4 image processor, and an ISO range of
+                        100-25600.</p>
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.921-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.197-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.049 9.393c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.966z" />
+                        </svg>
+                        <span class="text-gray-700 font-medium">4.7</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                <img src="https://i.pinimg.com/736x/ff/35/23/ff3523546da26ef3a4902cd972af7850.jpg"
+                    alt="Panasonic LUMIX G7 4K " class="w-full h-60 object-cover">
+                <div class="p-6 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-2">
+                        <h3 class="text-xl font-semibold text-gray-800">LUMIX G7 4K</h3>
+                        <span class="text-[#0071e3] text-lg font-bold">$699.99</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 flex-1">The Panasonic LUMIX G7 is a mirrorless camera with a
+                        16-megapixel Micro Four Thirds sensor known for its strong video capabilities, </p>
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.921-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.197-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.049 9.393c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.966z" />
+                        </svg>
+                        <span class="text-gray-700 font-medium">4.6</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <!-- <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                    <img src="https://i.pinimg.com/1200x/51/96/76/519676ef07d7c52779c803fa1da95197.jpg"
+                        alt="Denim Shirt" class="w-full h-56 object-cover">
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex items-center justify-between mb-2"> 
+                            <h3 class="text-xl font-semibold text-gray-800">Denim Skirt</h3>
+                            <span class="text-[#fa7c59] text-lg font-bold">$59</span>
+                        </div>
+                        <p class="text-gray-600 mb-4 flex-1">Rugged and stylish denim shirt for a casual look. Durable
+                            and trendy.</p>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.921-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.197-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.049 9.393c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.966z"/>
+                            </svg>
+                            <span class="text-gray-700 font-medium">4.8</span>
+                        </div>
+                    </div>
+                </div> -->
+        </div>
+    </div>
+    </div>
+</section>
+<!-- use marquee  -->
+<section class="bg-white py-6">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex items-center mb-4">
+            <!-- Brand Icon -->
+            <svg class="w-8 h-8 text-[#0071e3] mr-2" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 12h8"></path>
+            </svg>
+            <span class="text-2xl font-bold text-[#0071e3]">Camera-Shop Brands</span>
+        </div>
+        <div class="overflow-hidden">
+            <div class="flex animate-marquee space-x-8">
+                <!-- Brand Card 1 -->
+                <div
+                    class="bg-[#f7f2ee] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition">
+                    <!-- Sony Camera Icon -->
+                    <svg class="w-8 h-8 text-[#0071e3] mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z" />
+                    </svg>
+
+                    <div>
+                        <div class="text-lg font-bold text-gray-800">Camera-Sony</div>
+                        <div class="text-sm text-gray-500">High-quality Sony cameras for professional and casual
+                            photography.</div>
+                    </div>
+                </div>
+
+                <!-- Brand Card 2 -->
+                <div
+                    class="bg-[#fff0f0] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition">
+                    <!-- Canon Camera Icon -->
+                    <svg class="w-8 h-8 text-[#D31C1C] mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z" />
+                    </svg>
+
+                    <div>
+                        <div class="text-lg font-bold text-gray-800">Camera-Canon</div>
+                        <div class="text-sm text-gray-500">Explore Canon cameras for reliable and high-quality
+                            photography.</div>
+                    </div>
+                </div>
+
+                <!-- Brand Card 3 -->
+                <div
+                    class="bg-[#fffbea] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition">
+                    <!-- Nikon Camera Icon -->
+                    <svg class="w-8 h-8 text-[#f7c600] mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z" />
+                    </svg>
+
+                    <div>
+                        <div class="text-lg font-bold text-gray-800">Camera-Nikon</div>
+                        <div class="text-sm text-gray-500">Explore Nikon cameras for precision and professional
+                            photography.</div>
+                    </div>
+                </div>
+
+                <!-- Brand Card 4 -->
+                <div
+                    class="bg-[#e8f0ff] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition">
+                    <!-- Samsung Camera Icon -->
+                    <svg class="w-8 h-8 text-[#1428A0] mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z" />
+                    </svg>
+
+                    <div>
+                        <div class="text-lg font-bold text-gray-800">Camera-Samsung</div>
+                        <div class="text-sm text-gray-500">Discover Samsung cameras with advanced features and sleek
+                            design.</div>
+                    </div>
+                </div>
+                <!-- Brand card 5 -->
+                <div
+                    class="bg-[#f7f7f7] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition">
+                    <!-- Lumix Camera Icon -->
+                    <svg class="w-8 h-8 text-gray-800 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z" />
+                    </svg>
+
+                    <div>
+                        <div class="text-lg font-bold text-gray-800">Camera-Lumix</div>
+                        <div class="text-sm text-gray-500">Explore Lumix cameras for advanced photography and crisp
+                            image quality.</div>
+                    </div>
+                </div>
+                <!-- Brand card 6 -->
+                <div
+                    class="bg-[#e6f9eb] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition">
+                    <!-- Fujifilm Camera Icon -->
+                    <svg class="w-8 h-8 text-[#009640] mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z" />
+                    </svg>
+
+                    <div>
+                        <div class="text-lg font-bold text-gray-800">Camera - Fujifilm</div>
+                        <div class="text-sm text-gray-500">Discover Fujifilm cameras for vibrant colors and versatile
+                            photography.</div>
+                    </div>
+                </div>
+                <!-- Brand card 6 -->
+                <div
+                    class="bg-[#f2f4f7] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition">
+                    <!-- Olympus Camera Icon -->
+                    <svg class="w-8 h-8 text-gray-800 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z" />
+                    </svg>
+
+                    <div>
+                        <div class="text-lg font-bold text-gray-800">Camera - Olympus</div>
+                        <div class="text-sm text-gray-500">Discover Olympus cameras for compact and high-performance
+                            photography.</div>
+                    </div>
+                </div>
+                <!-- Brand card 7 -->
+                <div
+                    class="bg-[#e8f3ff] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition">
+                    <!-- GoPro Camera Icon -->
+                    <svg class="w-8 h-8 text-[#0077c8] mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z" />
+                    </svg>
+
+                    <div>
+                        <div class="text-lg font-bold text-gray-800">Camera - GoPro</div>
+                        <div class="text-sm text-gray-500">Explore GoPro cameras for action-packed adventures and
+                            durability.</div>
+                    </div>
+                </div>
+                <!-- Brand card 8 -->
+                <div
+                    class="bg-[#f9f5f3] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition">
+                    <!-- Leica Camera Icon -->
+                    <svg class="w-8 h-8 text-[#e62b1e] mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C7.589 2 4 5.589 4 10c0 4.411 3.589 8 8 8s8-3.589 8-8c0-4.411-3.589-8-8-8zm0 14a6 6 0 110-12 6 6 0 010 12zm0-10a4 4 0 100 8 4 4 0 000-8z" />
+                    </svg>
+
+                    <div>
+                        <div class="text-lg font-bold text-gray-800">Camera - Leica</div>
+                        <div class="text-sm text-gray-500">
+                            Discover Leica cameras known for precision optics, timeless design, and professional
+                            photography quality.
+                        </div>
+                    </div>
+                </div>
+                <!-- Brand card 9 -->
+                <div
+                    class="bg-[#e8f3ff] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition">
+
+                    <!-- Pentax Camera Icon -->
+                    <svg class="w-8 h-8 text-[#0077c8] mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M21 6h-3.586l-2-2H8.586l-2 2H3a1 1 0 00-1 1v12a1 1 0 001 1h18a1 1 0 001-1V7a1 1 0 00-1-1zm-9 12a5 5 0 110-10 5 5 0 010 10zm7-12h-2V5h2v1z" />
+                    </svg>
+
+                    <div>
+                        <div class="text-lg font-bold text-gray-800">Camera - Pentax</div>
+                        <div class="text-sm text-gray-500">Discover Pentax cameras known for ruggedness, image quality,
+                            and precision photography.</div>
+                    </div>
+                </div>
+                <!-- Brand card 10 -->
+                <div
+                    class="bg-[#fff0e6] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition">
+
+                    <!-- Kodak Camera Icon -->
+                    <svg class="w-8 h-8 text-[#ffcd00] mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M20 5h-3l-1-1H8l-1 1H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z" />
+                    </svg>
+
+                    <div>
+                        <div class="text-lg font-bold text-gray-800">Camera - Kodak</div>
+                        <div class="text-sm text-gray-500">Discover Kodak cameras known for classic photography and
+                            vibrant colors.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- contact us -->
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-12 items-center">
+        <!-- Contact Form -->
+        <div class="flex-1 w-full">
+            <h2 class="text-3xl font-bold text-[#0071e3] mb-6">Contact Us</h2>
+            <form class="bg-[#f7f7f7] rounded-xl shadow-md p-8 space-y-6">
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2" for="name">Name</label>
+                    <input type="text" id="name" name="name" required
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#fa7c59] transition" />
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2" for="email">Email</label>
+                    <input type="email" id="email" name="email" required
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#fa7c59] transition" />
+                </div>
+                <!-- <div>
+                    <label class="block text-gray-700 font-medium mb-2" for="phone">Phone</label>
+                    <input type="phone" id="phone" name="phone" required
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#fa7c59] transition" />
+                </div> -->
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2" for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" required
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#fa7c59] transition"></textarea>
+                </div>
+                <button type="submit"
+                    class="bg-[#0071e3] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3] border border-[#0071e3] transition">
+                    Send Message
+                </button>
+            </form>
+        </div>
+        <!-- Map -->
+        <div class="flex-1 w-full flex justify-center">
+            <div class="rounded-xl overflow-hidden shadow-md w-full max-w-md h-[350px]">
+               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.5728788335387!2d104.88793507510012!3d11.56220538863841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310951adb4d4041d%3A0x8a90e729f62ad800!2sETEC2!5e1!3m2!1sen!2skh!4v1763055662301!5m2!1sen!2skh" width="600" height="450" style="border:0;" 
+               allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-[#0071e3] text-white py-10">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
+        <!-- Logo & Brand -->
+        <div class="flex items-center gap-3">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 12h8"></path>
+            </svg>
+            <span class="text-2xl font-bold">CAMERA-STORE</span>
+        </div>
+        <!-- Footer Links -->
+        <div class="flex flex-wrap gap-6 text-base font-medium">
+            <a href="index.html" class="hover:underline">Home</a>
+            <a href="shop.html" class="hover:underline">Shop</a>
+            <a href="about.html" class="hover:underline">About</a>
+            <a href="contact.html" class="hover:underline">Contact</a>
+            <a href="#" class="hover:underline">Privacy Policy</a>
+        </div>
+        <!-- Social Icons -->
+        <div class="flex gap-4">
+            <!-- Icorn Facebook -->
+            <a href="#" aria-label="Facebook" class="hover:text-[#f7f2ee] transition">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.127 8.438 9.877v-6.987h-2.54v-2.89h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.987C18.343 21.127 22 17 22 12z" />
+                </svg>
+            </a>
+            <!-- Icorn Telegram -->
+            <a href="https://t.me/yourusername" target="_blank" aria-label="Telegram"
+                class=" hover:text-[#0088cc] transition duration-300">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M9.999 15.172l-.387 4.327c.553 0 .793-.237 1.08-.521l2.588-2.47 5.367 3.925c.984.54 1.684.256 1.938-.91l3.507-16.426c.36-1.671-.604-2.322-1.66-1.92L1.23 10.38c-1.61.63-1.585 1.54-.274 1.95l4.946 1.545L17.57 6.84c.603-.39 1.152-.175.7.25L9.999 15.172z" />
+                </svg>
+            </a>
+            <!-- Icorn Twitter -->
+            <a href="#" aria-label="Twitter" class="hover:text-[#f7f2ee] transition">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M22.46 6c-.77.35-1.6.59-2.47.7a4.3 4.3 0 001.88-2.37 8.59 8.59 0 01-2.72 1.04A4.28 4.28 0 0016.11 4c-2.37 0-4.29 1.92-4.29 4.29 0 .34.04.67.11.99C7.69 9.13 4.07 7.13 1.64 4.16c-.37.63-.58 1.36-.58 2.14 0 1.48.75 2.79 1.89 3.56a4.28 4.28 0 01-1.94-.54v.05c0 2.07 1.47 3.8 3.42 4.19-.36.1-.74.16-1.13.16-.28 0-.54-.03-.8-.08.54 1.68 2.11 2.9 3.97 2.93A8.6 8.6 0 012 19.54a12.13 12.13 0 006.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19-.01-.38-.02-.57A8.72 8.72 0 0024 5.5a8.6 8.6 0 01-2.54.7z" />
+                </svg>
+            </a>
+            <!-- Icorn Instagram -->
+            <a href="#" aria-label="Instagram" class="hover:text-[#f7f2ee] transition">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 110 10.5 5.25 5.25 0 010-10.5zm0 1.5a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5zm5.25.75a1 1 0 110 2 1 1 0 010-2z" />
+                </svg>
+            </a>
+            </a>
+            <!-- Icorn Tiktok -->
+            <a href="#" aria-label="TikTok" class="hover:text-[#f7f2ee] transition">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12.75 2h2.25a4.5 4.5 0 004.5 4.5v2.25a6.75 6.75 0 01-4.5-1.65v7.65a5.25 5.25 0 11-5.25-5.25h.75v2.25h-.75a3 3 0 100 6 3 3 0 003-3V2z" />
+                </svg>
+            </a>
+
+        </div>
+    </div>
+    <div class="mt-8 text-center text-sm text-[#f7f2ee]">
+        © 2023 CAMERA-STORE. All rights reserved.
+    </div>
+</footer>
+
+<!-- Cart Sidebar -->
+  <!-- <div id="cart"
+    class="hidden fixed top-20 right-4 bg-white p-4 shadow-lg rounded-lg w-64 max-h-96 overflow-auto z-50">
+    <h3 class="font-bold mb-2 text-[#fa7c59]">Shopping Cart</h3>
+    <ul id="cart-items" class="text-sm"></ul>
+    <p id="cart-total" class="mt-2 font-semibold"></p>
+    <button id="clear-cart"
+      class="mt-2 px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 transition">Clear Cart</button>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll(".add-to-cart");
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartItems = document.getElementById("cart-items");
+    const cartTotal = document.getElementById("cart-total");
+    const cartCount = document.getElementById("cart-count");
+    const cartSidebar = document.getElementById("cart");
+    const cartButton = document.getElementById("cart-button");
+
+    function updateCartUI() {
+      cartItems.innerHTML = "";
+      let total = 0;
+      let count = 0;
+      cart.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = `${item.name} x ${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`;
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "Remove";
+        removeBtn.className = "ml-2 text-red-500 hover:underline text-xs";
+        removeBtn.addEventListener("click", () => {
+          cart = cart.filter(i => i.name !== item.name);
+          localStorage.setItem("cart", JSON.stringify(cart));
+          updateCartUI();
+        });
+        li.appendChild(removeBtn);
+        cartItems.appendChild(li);
+        total += item.price * item.quantity;
+        count += item.quantity;
+      });
+      cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+      cartCount.textContent = count;
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    updateCartUI();
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        const name = button.getAttribute("data-name");
+        const price = parseFloat(button.getAttribute("data-price"));
+        const existing = cart.find(item => item.name === name);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          cart.push({ name, price, quantity: 1 });
+        }
+        updateCartUI();
+      });
+    });
+
+    document.getElementById("clear-cart").addEventListener("click", () => {
+      cart = [];
+      localStorage.removeItem("cart");
+      updateCartUI();
+    });
+
+    cartButton.addEventListener("click", () => cartSidebar.classList.toggle("hidden"));
+  </script>
+ -->
+
+ 
+
+</body>
+
+</html>
