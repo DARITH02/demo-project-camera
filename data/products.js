@@ -6,11 +6,11 @@ const products = [
     description:
       "32.5MP Full-Frame CMOS Sensor, 7K 60p 12-Bit Internal RAW, Dual Pixel CMOS AF II, High-Speed 4K 120p, Movie Servo AF, 8.5-stop image stabilization.",
     price: 2799.0,
-    image: "../images/Canon EOS R6 Mark III Mirrorless Camera/p1.jpg",
+    image: "./images/Canon EOS R6 Mark III Mirrorless Camera/p1.jpg",
     subImages: [
-      "../images/Canon EOS R6 Mark III Mirrorless Camera/p1.jpg",
-      "../images/Canon EOS R6 Mark III Mirrorless Camera/p2.jpg",
-      "../images/Canon EOS R6 Mark III Mirrorless Camera/p3.jpg",
+      "./images/Canon EOS R6 Mark III Mirrorless Camera/p1.jpg",
+      "./images/Canon EOS R6 Mark III Mirrorless Camera/p2.jpg",
+      "./images/Canon EOS R6 Mark III Mirrorless Camera/p3.jpg",
     ],
     specs: {
       Sensor: "32.5MP Full-Frame CMOS",
@@ -25,11 +25,11 @@ const products = [
     description:
       "40.2MP APS-C X-Trans CMOS 5 HR Sensor, X-Processor 5, Fujinon 23mm f/2 Lens, 35mm Full-Frame Equivalent.",
     price: 1499.0,
-    image: "../images/FUJIFILM X100VI(Silver)/p1.jpg",
+    image: "./images/FUJIFILM X100VI(Silver)/p1.jpg",
     subImages: [
-      "../images/FUJIFILM X100VI(Silver)/p1.jpg",
-      "../images/FUJIFILM X100VI(Silver)/p2.jpg",
-      "../images/FUJIFILM X100VI(Silver)/p3.jpg",
+      "./images/FUJIFILM X100VI(Silver)/p1.jpg",
+      "./images/FUJIFILM X100VI(Silver)/p2.jpg",
+      "./images/FUJIFILM X100VI(Silver)/p3.jpg",
     ],
     specs: {
       Sensor: "40.2MP APS-C X-Trans CMOS 5",
@@ -44,11 +44,11 @@ const products = [
     description:
       "40.2MP APS-C X-Trans CMOS 5 HR Sensor, X-Processor 5, Fujinon 23mm f/2 Lens, 35mm Full-Frame Equivalent.",
     price: 1499.0,
-    image: "../images/FUJIFILM X100VI(black)/p1.jpg",
+    image: "./images/FUJIFILM X100VI(black)/p1.jpg",
     subImages: [
-      "../images/FUJIFILM X100VI(black)/p1.jpg",
-      "../images/FUJIFILM X100VI(black)/p2.jpg",
-      "../images/FUJIFILM X100VI(black)/p3.jpg",
+      "./images/FUJIFILM X100VI(black)/p1.jpg",
+      "./images/FUJIFILM X100VI(black)/p2.jpg",
+      "./images/FUJIFILM X100VI(black)/p3.jpg",
     ],
     specs: {
       Sensor: "40.2MP APS-C X-Trans CMOS 5",
@@ -64,11 +64,11 @@ const products = [
       "26.1MP APS-C X-Trans CMOS 5 HR Sensor, X-Processor 5, XC 15-45mm f/3.5-5.6 Lens included. Compact, lightweight mirrorless camera ideal for photography and video.",
     price: 999.0,
     image:
-      "../images/FUJIFILM X-M5 Mirrorless Camera with XC 15-45mm f3.5-5.6 Lens/p1.jpg",
+      "./images/FUJIFILM X-M5 Mirrorless Camera with XC 15-45mm f3.5-5.6 Lens/p1.jpg",
     subImages: [
-      "../images/FUJIFILM X-M5 Mirrorless Camera with XC 15-45mm f3.5-5.6 Lens/p1.jpg",
-      "../images/FUJIFILM X-M5 Mirrorless Camera with XC 15-45mm f3.5-5.6 Lens/p2.jpg",
-      "../images/FUJIFILM X-M5 Mirrorless Camera with XC 15-45mm f3.5-5.6 Lens/p3.jpg",
+      "./images/FUJIFILM X-M5 Mirrorless Camera with XC 15-45mm f3.5-5.6 Lens/p1.jpg",
+      "./images/FUJIFILM X-M5 Mirrorless Camera with XC 15-45mm f3.5-5.6 Lens/p2.jpg",
+      "./images/FUJIFILM X-M5 Mirrorless Camera with XC 15-45mm f3.5-5.6 Lens/p3.jpg",
     ],
     specs: {
       Sensor: "26.1MP APS-C X-Trans CMOS 5",

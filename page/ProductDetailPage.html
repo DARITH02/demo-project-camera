@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <title>Product Detail</title>
     <style>
       .selected-border {
@@ -93,7 +95,7 @@
     </main>
 
     <!-- Load external product data -->
-    <script src="./data/products.js"></script>
+    <script src="../data/products.js"></script>
     <script>
       const urlParams = new URLSearchParams(window.location.search);
       const productId = urlParams.get("id");
@@ -113,7 +115,7 @@
         document.getElementById(
           "product-price"
         ).textContent = `$${product.price.toFixed(2)}`;
-        mainImage.src = product.image;
+        mainImage.src = `../${product.image}`;
 
         // Render sub-images
         subImagesDiv.innerHTML = "";
@@ -125,13 +127,13 @@
           if (index === 0) btn.classList.add("selected-border");
 
           const imageEl = document.createElement("img");
-          imageEl.src = img;
+          imageEl.src = `../${img}`; // or `./images/${img}`
           imageEl.alt = `${product.name} view ${index + 1}`;
           imageEl.className = "w-full h-full object-cover rounded";
 
           btn.appendChild(imageEl);
           btn.addEventListener("click", () => {
-            mainImage.src = img;
+            mainImage.src = `../${img}`;
             Array.from(subImagesDiv.children).forEach((c) =>
               c.classList.remove("selected-border")
             );
@@ -196,7 +198,16 @@
         // Save back to localStorage
         localStorage.setItem("cart", JSON.stringify(cart));
 
-        alert(`Added ${quantity} x ${product.name} to cart!`);
+        Swal.fire({
+          toast: true,
+          position: "top-end",
+          icon: "success",
+          title: "Saved!",
+          showConfirmButton: false,
+          timer: 1500,
+          width: "180px", // smaller width
+          padding: "0.5rem",
+        });
       });
     </script>
   </body>
