@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CAMERA-SHOP</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <script
       src="https://kit.fontawesome.com/9152de16db.js"
       crossorigin="anonymous"
     ></script>
     <link rel="icon" type="image/png" href="./images/logo/logo.jpg" />
-
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+      };
+    </script>
     <script src="./data/products.js"></script>
 
     <style>
@@ -27,10 +32,11 @@
         /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); */
       }
 
-      /* .container.h1{
-            text-align: center;
-            justify-content: center;
-        } */
+      /* Dark mode transition */
+      .dark-mode-transition * {
+        transition: background-color 0.3s ease, color 0.3s ease,
+          border-color 0.3s ease;
+      }
     </style>
 
     <style>
@@ -83,61 +89,110 @@
         }
       }
     </style>
+
+    <script>
+      // Initialize dark mode before page loads to prevent flash
+      if (localStorage.getItem("darkMode") === "true") {
+        document.documentElement.classList.add("dark");
+      }
+    </script>
   </head>
 
-  <body>
-    <header class="bg-white shadow sticky top-0 z-50">
+  <body class="dark-mode-transition bg-gray-100 dark:bg-gray-900">
+    <header class="bg-white dark:bg-gray-800 shadow sticky top-0 z-50">
       <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
-        <h1 class="text-2xl font-bold text-blue-600">CAMERA-SHOP</h1>
+        <h1 class="text-2xl font-bold text-blue-600 dark:text-blue-400">
+          CAMERA-SHOP
+        </h1>
 
         <!-- Desktop Menu -->
         <nav class="hidden md:flex gap-6 items-center">
-          <a href="./index.html" class="text-blue-600 font-semibold">Home</a>
-          <a href="./page/shop.html" class="text-gray-700 hover:text-blue-600"
+          <a
+            href="./index.html"
+            class="text-blue-600 dark:text-blue-400 font-semibold"
+            >Home</a
+          >
+          <a
+            href="./page/shop.html"
+            class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
             >Shop</a
           >
-          <a href="./page/about.html" class="text-gray-700 hover:text-blue-600"
+          <a
+            href="./page/about.html"
+            class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
             >About</a
           >
           <a
             href="./page/contact.html"
-            class="text-gray-700 hover:text-blue-600"
+            class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
             >Contact</a
           >
+
+          <!-- Dark Mode Toggle for Desktop -->
+          <button
+            id="darkModeToggleDesktop"
+            class="text-gray-700 dark:text-gray-200 text-xl"
+          >
+            <i id="darkModeIconDesktop" class="fa-regular fa-moon"></i>
+          </button>
           <!-- Desktop Login -->
           <a
             id="loginBtnDesktop"
-            class="bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3] border border-[#0071e3] transition"
+            class="bg-[#0071e3] dark:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] dark:hover:bg-gray-700 hover:text-[#0071e3] dark:hover:text-blue-400 border border-[#0071e3] dark:border-blue-700 transition"
           >
             Login
           </a>
         </nav>
 
         <!-- Mobile Menu Button -->
-        <button
-          id="mobileMenuBtn"
-          class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none"
-        >
-          <i class="fa-solid fa-bars text-2xl"></i>
-        </button>
+        <div class="flex items-center gap-5 md:hidden">
+          <!-- Dark Mode Toggle for Mobile -->
+
+          <button
+            id="darkModeToggleMobile"
+            class="text-gray-700 dark:text-gray-200 text-xl"
+          >
+            <i id="darkModeIconMobile" class="fa-regular fa-moon"></i>
+          </button>
+
+          <button
+            id="mobileMenuBtn"
+            class="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
+          >
+            <i class="fa-solid fa-bars text-2xl"></i>
+          </button>
+        </div>
       </div>
 
       <!-- Mobile Menu -->
-      <nav id="mobileMenu" class="hidden md:hidden flex-col bg-white border-t">
-        <a href="./index.html" class="block p-3 text-blue-600 font-semibold"
+      <nav
+        id="mobileMenu"
+        class="hidden md:hidden flex-col bg-white dark:bg-gray-800 border-t dark:border-gray-700"
+      >
+        <a
+          href="./index.html"
+          class="block p-3 text-blue-600 dark:text-blue-400 font-semibold"
           >Home</a
         >
-        <a href="./page/shop.html" class="block p-3 hover:bg-gray-100">Shop</a>
-        <a href="./page/about.html" class="block p-3 hover:bg-gray-100"
+        <a
+          href="./page/shop.html"
+          class="block p-3 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300"
+          >Shop</a
+        >
+        <a
+          href="./page/about.html"
+          class="block p-3 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300"
           >About</a
         >
-        <a href="./page/contact.html" class="block p-3 hover:bg-gray-100"
+        <a
+          href="./page/contact.html"
+          class="block p-3 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300"
           >Contact</a
         >
         <!-- Mobile Menu Login Button -->
         <a
           id="loginBtnMobile"
-          class="block p-3 bg-[#0071e3] text-white rounded-lg text-center mt-2 hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+          class="block p-3 bg-[#0071e3] dark:bg-blue-700 text-white rounded-lg text-center mt-2 hover:bg-[#f7f2ee] dark:hover:bg-gray-700 hover:text-[#0071e3] dark:hover:text-blue-400"
         >
           Login
         </a>
@@ -145,25 +200,25 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="bg-[#f7f7f7]">
+    <section class="bg-[#f7f7f7] dark:bg-gray-800">
       <div
         class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12"
       >
         <!-- Text Content -->
         <div class="flex-1 text-center md:text-left py-6">
           <h1
-            class="text-4xl md:text-6xl font-extrabold text-[#0071e3] mb-4 leading-tight"
+            class="text-4xl md:text-6xl font-extrabold text-[#0071e3] dark:text-blue-400 mb-4 leading-tight"
           >
             Discover Your Collections<br />
-            <span class="text-gray-800">With Camera Shop</span>
+            <span class="text-gray-800 dark:text-white">With Camera Shop</span>
           </h1>
-          <p class="text-lg text-gray-600 mb-6">
+          <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
             Shop the latest trends in cameras. Quality, comfort, and style for
             every occasion.
           </p>
           <a
             href="#"
-            class="inline-block bg-[#0071e3] text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-[#f7f2ee] hover:text-[#0071e3] border border-[#0071e3] transition"
+            class="inline-block bg-[#0071e3] dark:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-[#f7f2ee] dark:hover:bg-gray-700 hover:text-[#0071e3] dark:hover:text-blue-400 border border-[#0071e3] dark:border-blue-700 transition"
           >
             Shop Now
           </a>
@@ -181,18 +236,20 @@
     </section>
 
     <!-- Categories -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-white dark:bg-gray-800">
       <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-[#0071e3] mb-10 text-center">
+        <h2
+          class="text-3xl font-bold text-[#0071e3] dark:text-blue-400 mb-10 text-center"
+        >
           Categories
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           <!-- Example Category -->
           <div
-            class="bg-[#f7f7f7] rounded-xl shadow-md p-6 flex flex-col items-center hover:scale-105 hover:shadow-lg transition"
+            class="bg-[#f7f7f7] dark:bg-gray-700 rounded-xl shadow-md p-6 flex flex-col items-center hover:scale-105 hover:shadow-lg transition"
           >
             <svg
-              class="w-12 h-12 text-[#0071e3] mb-4"
+              class="w-12 h-12 text-[#0071e3] dark:text-blue-400 mb-4"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -200,21 +257,23 @@
                 d="M12 9a3 3 0 100 6 3 3 0 000-6zm8-3h-2.586l-.707-.707A1 1 0 0016 5h-8a1 1 0 00-.707.293L6.586 6H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2zm0 12H4V8h3.172l1-1h7.656l1 1H20v10z"
               />
             </svg>
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">
+            <h3
+              class="text-xl font-semibold text-gray-800 dark:text-white mb-2"
+            >
               Camera-Sony
             </h3>
-            <p class="text-gray-600 text-center">
+            <p class="text-gray-600 dark:text-gray-300 text-center">
               High-quality Sony cameras for professional and casual photography.
             </p>
           </div>
 
           <!-- Example Category -->
           <div
-            class="bg-[#f7f7f7] rounded-xl shadow-md p-6 flex flex-col items-center hover:scale-105 hover:shadow-lg transition"
+            class="bg-[#f7f7f7] dark:bg-gray-700 rounded-xl shadow-md p-6 flex flex-col items-center hover:scale-105 hover:shadow-lg transition"
           >
             <!-- Nikon Camera Icon -->
             <svg
-              class="w-12 h-12 text-[#0071e3] mb-4"
+              class="w-12 h-12 text-[#0071e3] dark:text-blue-400 mb-4"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -223,20 +282,22 @@
               />
             </svg>
 
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">
+            <h3
+              class="text-xl font-semibold text-gray-800 dark:text-white mb-2"
+            >
               Camera Nikon
             </h3>
-            <p class="text-gray-600 text-center">
+            <p class="text-gray-600 dark:text-gray-300 text-center">
               Explore Nikon cameras for precision and professional photography.
             </p>
           </div>
 
           <div
-            class="bg-[#f7f7f7] rounded-xl shadow-md p-6 flex flex-col items-center hover:scale-105 hover:shadow-lg transition"
+            class="bg-[#f7f7f7] dark:bg-gray-700 rounded-xl shadow-md p-6 flex flex-col items-center hover:scale-105 hover:shadow-lg transition"
           >
             <!-- Nikon Camera Icon -->
             <svg
-              class="w-12 h-12 text-[#0071e3] mb-4"
+              class="w-12 h-12 text-[#0071e3] dark:text-blue-400 mb-4"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -245,8 +306,12 @@
               />
             </svg>
 
-            <h3 class="text-xl font-semibold text-gray-800 mb-2">Canon</h3>
-            <p class="text-gray-600 text-center">
+            <h3
+              class="text-xl font-semibold text-gray-800 dark:text-white mb-2"
+            >
+              Canon
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 text-center">
               Explore Nikon cameras for precision and professional photography.
             </p>
           </div>
@@ -255,11 +320,11 @@
     </section>
 
     <!-- Popular Cameras -->
-
-    <!-- Popular Cameras -->
-    <section class="py-16 bg-[#f7f7f7]">
+    <section class="py-16 bg-[#f7f7f7] dark:bg-gray-800">
       <div class="max-w-7xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-[#0071e3] mb-10 text-center">
+        <h2
+          class="text-3xl font-bold text-[#0071e3] dark:text-blue-400 mb-10 text-center"
+        >
           Popular Cameras
         </h2>
         <div
@@ -272,12 +337,12 @@
     </section>
 
     <!-- Brands Marquee -->
-    <section class="bg-white py-6">
+    <section class="bg-white dark:bg-gray-800 py-6">
       <div class="max-w-7xl mx-auto px-4">
         <!-- Header -->
         <div class="flex items-center mb-4">
           <svg
-            class="w-8 h-8 text-[#0071e3] mr-2"
+            class="w-8 h-8 text-[#0071e3] dark:text-blue-400 mr-2"
             fill="none"
             stroke="currentColor"
             stroke-width="2"
@@ -286,7 +351,7 @@
             <circle cx="12" cy="12" r="10"></circle>
             <path d="M8 12h8"></path>
           </svg>
-          <span class="text-2xl font-bold text-[#0071e3]"
+          <span class="text-2xl font-bold text-[#0071e3] dark:text-blue-400"
             >Camera-Shop Brands</span
           >
         </div>
@@ -296,10 +361,10 @@
           <div class="flex space-x-8 animate-marquee">
             <!-- Repeat your brand cards here -->
             <div
-              class="brand-card bg-[#f7f2ee] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
+              class="brand-card bg-[#f7f2ee] dark:bg-gray-700 rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
             >
               <svg
-                class="w-8 h-8 text-[#0071e3] mr-3"
+                class="w-8 h-8 text-[#0071e3] dark:text-blue-400 mr-3"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -308,8 +373,10 @@
                 />
               </svg>
               <div>
-                <div class="text-lg font-bold text-gray-800">Camera-Sony</div>
-                <div class="text-sm text-gray-500">
+                <div class="text-lg font-bold text-gray-800 dark:text-white">
+                  Camera-Sony
+                </div>
+                <div class="text-sm text-gray-500 dark:text-gray-300">
                   High-quality Sony cameras for professional and casual
                   photography.
                 </div>
@@ -318,10 +385,10 @@
 
             <!-- Duplicate more cards here or use your 10+ cards -->
             <div
-              class="brand-card bg-[#fff0f0] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
+              class="brand-card bg-[#fff0f0] dark:bg-gray-700 rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
             >
               <svg
-                class="w-8 h-8 text-[#D31C1C] mr-3"
+                class="w-8 h-8 text-[#D31C1C] dark:text-red-400 mr-3"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -330,8 +397,10 @@
                 />
               </svg>
               <div>
-                <div class="text-lg font-bold text-gray-800">Camera-Canon</div>
-                <div class="text-sm text-gray-500">
+                <div class="text-lg font-bold text-gray-800 dark:text-white">
+                  Camera-Canon
+                </div>
+                <div class="text-sm text-gray-500 dark:text-gray-300">
                   Explore Canon cameras for reliable and high-quality
                   photography.
                 </div>
@@ -345,36 +414,38 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-white dark:bg-gray-800">
       <div
         class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row gap-12 items-center"
       >
         <!-- Contact Form -->
         <div class="flex-1 w-full">
           <h2
-            class="text-3xl font-bold text-[#0071e3] mb-6 text-center md:text-left"
+            class="text-3xl font-bold text-[#0071e3] dark:text-blue-400 mb-6 text-center md:text-left"
           >
             Contact Us
           </h2>
-          <form class="bg-[#f7f7f7] rounded-xl shadow-md p-6 md:p-8 space-y-4">
+          <form
+            class="bg-[#f7f7f7] dark:bg-gray-700 rounded-xl shadow-md p-6 md:p-8 space-y-4"
+          >
             <input
               type="text"
               placeholder="Name"
-              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#fa7c59] transition"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:border-[#fa7c59] transition bg-white dark:bg-gray-600 text-gray-900 dark:text-white"
             />
             <input
               type="email"
               placeholder="Email"
-              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#fa7c59] transition"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:border-[#fa7c59] transition bg-white dark:bg-gray-600 text-gray-900 dark:text-white"
             />
             <textarea
               placeholder="Message"
               rows="4"
-              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#fa7c59] transition"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:border-[#fa7c59] transition bg-white dark:bg-gray-600 text-gray-900 dark:text-white"
             ></textarea>
             <button
               type="submit"
-              class="bg-[#0071e3] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3] border border-[#0071e3] transition w-full md:w-auto"
+              class="bg-[#0071e3] dark:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#f7f2ee] dark:hover:bg-gray-600 hover:text-[#0071e3] dark:hover:text-blue-400 border border-[#0071e3] dark:border-blue-700 transition w-full md:w-auto"
             >
               Send Message
             </button>
@@ -401,7 +472,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-[#0071e3] text-white py-10">
+    <footer class="bg-[#0071e3] dark:bg-gray-800 text-white py-10">
       <div
         class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8"
       >
@@ -529,25 +600,29 @@
   topRatedProducts.forEach((product) => {
     const card = document.createElement("div");
     card.className =
-      "bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover:shadow-sm transition card-hover";
+      "bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden flex flex-col hover:shadow-sm transition card-hover";
     card.innerHTML = `
     <img src="${product.image}" alt="${
       product.name
     }" class="w-full h-64 object-cover p-4">
     <div class="p-4 flex-1 flex flex-col justify-between">
-      <h3 class="text-xl font-semibold mb-2">${product.name}</h3>
-      <p class="text-gray-600 mb-2 line-clamp-1">${product.description}</p>
+      <h3 class="text-xl font-semibold mb-2 dark:text-white">${
+        product.name
+      }</h3>
+      <p class="text-gray-600 dark:text-gray-300 mb-2 line-clamp-1">${
+        product.description
+      }</p>
      
-        <div class="mb-2">
+        <div class="mb-2 dark:text-gray-300">
         ${generateStars(product.rating)} ${product.rating} | <span>${
       product.views
     } views</span>
       </div>
       <div class="text-lg font-bold flex items-center justify-around">
-        <span class="block">$${product.price.toFixed(2)}</span>
+        <span class="block dark:text-white">$${product.price.toFixed(2)}</span>
         <a href="./page/ProductDetailPage.html?id=${
           product.id
-        }" class="px-3 py-2 bg-blue-700 text-white rounded-lg cursor-pointer">View</a>
+        }" class="px-3 py-2 bg-blue-700 dark:bg-blue-600 text-white rounded-lg cursor-pointer">View</a>
       </div>
     </div>
   `;
@@ -589,4 +664,50 @@
   }
 
   updateLoginButtons();
+</script>
+<script>
+  // Dark Mode Functionality
+  const darkModeToggleDesktop = document.getElementById(
+    "darkModeToggleDesktop"
+  );
+  const darkModeToggleMobile = document.getElementById("darkModeToggleMobile");
+  const darkModeIconDesktop = document.getElementById("darkModeIconDesktop");
+  const darkModeIconMobile = document.getElementById("darkModeIconMobile");
+
+  // Check for saved dark mode preference
+  const isDarkMode = localStorage.getItem("darkMode") === "true";
+
+  // Apply dark mode if enabled
+  if (isDarkMode) {
+    document.documentElement.classList.add("dark");
+    darkModeIconDesktop.classList.remove("fa-moon");
+    darkModeIconDesktop.classList.add("fa-sun");
+    darkModeIconMobile.classList.remove("fa-moon");
+    darkModeIconMobile.classList.add("fa-sun");
+  }
+
+  // Toggle dark mode
+  function toggleDarkMode() {
+    const isDark = document.documentElement.classList.toggle("dark");
+
+    // Update icons
+    if (isDark) {
+      darkModeIconDesktop.classList.remove("fa-moon");
+      darkModeIconDesktop.classList.add("fa-sun");
+      darkModeIconMobile.classList.remove("fa-moon");
+      darkModeIconMobile.classList.add("fa-sun");
+    } else {
+      darkModeIconDesktop.classList.remove("fa-sun");
+      darkModeIconDesktop.classList.add("fa-moon");
+      darkModeIconMobile.classList.remove("fa-sun");
+      darkModeIconMobile.classList.add("fa-moon");
+    }
+
+    // Save preference
+    localStorage.setItem("darkMode", isDark);
+  }
+
+  // Add event listeners
+  darkModeToggleDesktop.addEventListener("click", toggleDarkMode);
+  darkModeToggleMobile.addEventListener("click", toggleDarkMode);
 </script>
