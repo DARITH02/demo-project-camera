@@ -89,8 +89,10 @@
     <header class="bg-white shadow sticky top-0 z-50">
       <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
         <h1 class="text-2xl font-bold text-blue-600">CAMERA-SHOP</h1>
+
+        <!-- Desktop Menu -->
         <nav class="hidden md:flex gap-6">
-          <a href="../index.html" class="text-blue-600 font-semibold">Home</a>
+          <a href="./index.html" class="text-blue-600 font-semibold">Home</a>
           <a href="./page/shop.html" class="text-gray-700 hover:text-blue-600"
             >Shop</a
           >
@@ -102,33 +104,44 @@
             class="text-gray-700 hover:text-blue-600"
             >Contact</a
           >
+          <!-- Desktop Login -->
+          <a
+            id="loginBtnDesktop"
+            class="bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3] border border-[#0071e3] transition"
+          >
+            Login
+          </a>
         </nav>
-        <div class="flex items-center gap-4">
-          <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-700">
-            <i class="fa-solid fa-bars"></i>
-          </button>
-          <button id="cart-btn" class="relative text-2xl text-gray-700">
-            🛒
-            <span
-              id="cart-count"
-              class="absolute -top-2 -right-2 bg-red-500 text-white w-5 h-5 flex items-center justify-center rounded-full text-xs"
-              >0</span
-            >
-          </button>
-        </div>
-      </div>
-      <!-- Mobile Menu -->
-      <nav id="mobile-menu" class="hidden md:hidden flex-col bg-white border-t">
-        <a href="../index.html" class="block p-3 hover:bg-gray-100">Home</a>
-        <a
-          href="./shop.html"
-          class="block p-3 bg-blue-100 text-blue-700 font-semibold"
-          >Shop</a
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobileMenuBtn"
+          class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none"
         >
-        <a href="./about.html" class="block p-3 hover:bg-gray-100">About</a>
-        <a href="./contact.html" class="block p-3 hover:bg-gray-100">Contact</a>
+          <i class="fa-solid fa-bars text-2xl"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <nav id="mobileMenu" class="hidden md:hidden flex-col bg-white border-t">
+        <a href="./index.html" class="block p-3 hover:bg-gray-100">Home</a>
+        <a href="./page/shop.html" class="block p-3 hover:bg-gray-100">Shop</a>
+        <a href="./page/about.html" class="block p-3 hover:bg-gray-100"
+          >About</a
+        >
+        <a href="./page/contact.html" class="block p-3 hover:bg-gray-100"
+          >Contact</a
+        >
+        <!-- Mobile Menu Login Button -->
+        <a
+          id="loginBtnMobile"
+          class="block p-3 bg-[#0071e3] text-white rounded-lg text-center mt-2 hover:bg-[#f7f2ee] hover:text-[#0071e3]"
+        >
+          Login
+        </a>
       </nav>
     </header>
+
     <!-- Hero Section -->
     <section class="bg-[#f7f7f7]">
       <div
@@ -528,19 +541,6 @@
   `;
     document.getElementById("popular-cameras").appendChild(card);
   });
-
-  const loginBtn = document.getElementById("loginBtn");
-  // Check login status
-  if (localStorage.getItem("loggedIn") === "true") {
-    loginBtn.textContent = "Logout"; // Change text
-    loginBtn.href = "#"; // Remove href
-    loginBtn.addEventListener("click", () => {
-      localStorage.removeItem("loggedIn");
-      localStorage.removeItem("username");
-      localStorage.clear();
-      window.location.href = "./page/login.html"; // Redirect after logout
-    });
-  }
 </script>
 <!-- Mobile Menu Toggle Script -->
 <script>
@@ -550,4 +550,31 @@
   mobileBtn.addEventListener("click", () => {
     mobileMenu.classList.toggle("hidden");
   });
+</script>
+<script>
+  // Handle Login/Logout for both desktop and mobile buttons
+  const loginBtnDesktop = document.getElementById("loginBtnDesktop");
+  const loginBtnMobile = document.getElementById("loginBtnMobile");
+
+  function updateLoginButtons() {
+    const loggedIn = localStorage.getItem("loggedIn") === "true";
+    [loginBtnDesktop, loginBtnMobile].forEach((btn) => {
+      if (loggedIn) {
+        btn.textContent = "Logout";
+        btn.href = "#";
+        btn.onclick = () => {
+          localStorage.removeItem("loggedIn");
+          localStorage.removeItem("username");
+          localStorage.clear();
+          window.location.href = "./page/login.html"; // redirect after logout
+        };
+      } else {
+        btn.textContent = "Login";
+        btn.href = "./page/login.html";
+        btn.onclick = null;
+      }
+    });
+  }
+
+  updateLoginButtons();
 </script>
