@@ -141,7 +141,7 @@
           <!-- Login Button -->
           <a
             id="loginBtn"
-            href="./login.html"
+            href="./page/login.html"
             class="bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3] border border-[#0071e3] transition"
           >
             Login
@@ -583,6 +583,7 @@
     loginBtn.addEventListener("click", () => {
       localStorage.removeItem("loggedIn");
       localStorage.removeItem("username");
+      localStorage.clear();
       window.location.href = "./page/login.html"; // Redirect after logout
     });
   }
