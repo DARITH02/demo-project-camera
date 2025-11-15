@@ -3,36 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
       src="https://kit.fontawesome.com/9152de16db.js"
       crossorigin="anonymous"
     ></script>
-    <title>Shop</title>
-
-    <script src="../data/products.js"></script>
+    <title>Camera Shop</title>
   </head>
+
   <style>
+    /* Infinite scrolling marquee */
     @keyframes marquee {
       0% {
         transform: translateX(0);
       }
-
       100% {
         transform: translateX(-50%);
       }
     }
 
     .animate-marquee {
-      animation: marquee 18s linear infinite;
+      display: flex;
+      animation: marquee 25s linear infinite;
+    }
+
+    /* Duplicate content for seamless loop */
+    .animate-marquee > * {
+      flex-shrink: 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      .brand-card {
+        min-width: 180px;
+        padding: 3;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .animate-marquee {
+        animation-duration: 30s;
+      }
     }
   </style>
   <body class="bg-gray-100">
-    <header class="border-b bg-white sticky top-0 z-50">
-      <div
-        class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between"
-      >
+    <!-- Header -->
+    <header class="bg-white shadow sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
         <h1 class="text-2xl font-bold text-blue-600">CAMERA-SHOP</h1>
         <nav class="hidden md:flex gap-6">
           <a href="../index.html" class="text-gray-700 hover:text-blue-600"
@@ -46,20 +64,63 @@
             >Contact</a
           >
         </nav>
-
-        <!-- Cart -->
-        <div class="relative">
-          <button id="cart-btn" class="relative text-gray-700">
+        <div class="flex items-center gap-4">
+          <button id="mobile-menu-btn" class="md:hidden text-2xl text-gray-700">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <button id="cart-btn" class="relative text-2xl text-gray-700">
             🛒
             <span
               id="cart-count"
-              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
+              class="absolute -top-2 -right-2 bg-red-500 text-white w-5 h-5 flex items-center justify-center rounded-full text-xs"
               >0</span
             >
           </button>
         </div>
       </div>
+      <!-- Mobile Menu -->
+      <nav id="mobile-menu" class="hidden md:hidden flex-col bg-white border-t">
+        <a href="../index.html" class="block p-3 hover:bg-gray-100">Home</a>
+        <a
+          href="./shop.html"
+          class="block p-3 bg-blue-100 text-blue-700 font-semibold"
+          >Shop</a
+        >
+        <a href="./about.html" class="block p-3 hover:bg-gray-100">About</a>
+        <a href="./contact.html" class="block p-3 hover:bg-gray-100">Contact</a>
+      </nav>
     </header>
+
+    <!-- Search & Filters -->
+    <div
+      class="max-w-7xl mx-auto px-4 py-6 flex flex-col sm:flex-row justify-between items-center gap-4"
+    >
+      <h2 class="text-3xl font-bold text-blue-600">Our Collection</h2>
+      <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Search products..."
+          class="p-3 border rounded w-full sm:w-48 focus:ring-2 focus:ring-blue-500 outline-none"
+        />
+        <select id="categoryFilter" class="p-2 border rounded w-full sm:w-auto">
+          <option value="">All Categories</option>
+        </select>
+        <select id="sortPrice" class="p-2 border rounded w-full sm:w-auto">
+          <option value="">Sort by : Featured</option>
+          <option value="low-high">Price: Low to High</option>
+          <option value="high-low">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <section class="max-w-7xl mx-auto px-4 pb-10">
+      <div
+        id="product-list"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      ></div>
+    </section>
 
     <!-- Cart Modal -->
     <div
@@ -67,11 +128,9 @@
       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 p-4"
     >
       <div
-        class="bg-white w-full max-w-md rounded-lg relative flex flex-col max-h-[90vh]"
+        class="bg-white w-full max-w-md rounded-lg flex flex-col max-h-[90vh] overflow-y-auto"
       >
-        <div
-          class="flex justify-between items-center p-4 border-b flex-shrink-0"
-        >
+        <div class="flex justify-between items-center p-4 border-b">
           <h2 class="text-2xl font-bold text-blue-600">Your Cart</h2>
           <button
             id="close-cart"
@@ -80,15 +139,15 @@
             ✕
           </button>
         </div>
-        <div id="cart-items" class="flex-1 overflow-y-auto p-4 space-y-4"></div>
-        <div class="p-4 border-t flex-shrink-0">
+        <div id="cart-items" class="p-4 flex-1 space-y-4 overflow-y-auto"></div>
+        <div class="p-4 border-t">
           <div class="flex justify-between font-semibold text-lg mb-2">
             <span>Total:</span>
             <span id="cart-total">$0.00</span>
           </div>
           <button
             id="checkout-btn"
-            class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded font-semibold"
           >
             Checkout
           </button>
@@ -96,47 +155,11 @@
       </div>
     </div>
 
-    <div class="w-[80%] m-auto mt-8">
-      <div class="flex gap-4 w-full justify-between items-center">
-        <h2 class="text-3xl font-bold text-[#0071e3] mb-4 md:mb-0">
-          Our Collection
-        </h2>
-        <div class="w-[80%] flex justify-end items-center gap-5">
-          <input
-            id="search-input"
-            type="text"
-            placeholder="Search products..."
-            class="w-[40%] p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-          />
-          <select
-            id="categoryFilter"
-            class="px-4 py-2 rounded-lg border border-gray-300"
-          >
-            <option value="">All Categories</option>
-          </select>
-          <select
-            id="sortPrice"
-            class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-[#0071e3] transition"
-          >
-            <option value="">Sort by : Featured</option>
-            <option value="low-high">Price: Low to High</option>
-            <option value="high-low">Price: High to Low</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <section class="gap-8 p-4 w-[80%] mx-auto">
-      <div
-        id="product-list"
-        class="flex gap-[1.5%] w-full flex-wrap gap-y-5"
-      ></div>
-    </section>
-
+    <!-- Brands Marquee -->
     <section class="bg-white py-6">
       <div class="max-w-7xl mx-auto px-4">
+        <!-- Header -->
         <div class="flex items-center mb-4">
-          <!-- Brand Icon -->
           <svg
             class="w-8 h-8 text-[#0071e3] mr-2"
             fill="none"
@@ -151,13 +174,14 @@
             >Camera-Shop Brands</span
           >
         </div>
-        <div class="overflow-hidden">
-          <div class="flex animate-marquee space-x-8">
-            <!-- Brand Card 1 -->
+
+        <!-- Marquee -->
+        <div class="overflow-hidden relative">
+          <div class="flex space-x-8 animate-marquee">
+            <!-- Repeat your brand cards here -->
             <div
-              class="bg-[#f7f2ee] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
+              class="brand-card bg-[#f7f2ee] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
             >
-              <!-- Sony Camera Icon -->
               <svg
                 class="w-8 h-8 text-[#0071e3] mr-3"
                 fill="currentColor"
@@ -167,7 +191,6 @@
                   d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z"
                 />
               </svg>
-
               <div>
                 <div class="text-lg font-bold text-gray-800">Camera-Sony</div>
                 <div class="text-sm text-gray-500">
@@ -177,11 +200,10 @@
               </div>
             </div>
 
-            <!-- Brand Card 2 -->
+            <!-- Duplicate more cards here or use your 10+ cards -->
             <div
-              class="bg-[#fff0f0] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
+              class="brand-card bg-[#fff0f0] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
             >
-              <!-- Canon Camera Icon -->
               <svg
                 class="w-8 h-8 text-[#D31C1C] mr-3"
                 fill="currentColor"
@@ -191,7 +213,6 @@
                   d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z"
                 />
               </svg>
-
               <div>
                 <div class="text-lg font-bold text-gray-800">Camera-Canon</div>
                 <div class="text-sm text-gray-500">
@@ -201,536 +222,191 @@
               </div>
             </div>
 
-            <!-- Brand Card 3 -->
-            <div
-              class="bg-[#fffbea] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
-            >
-              <!-- Nikon Camera Icon -->
-              <svg
-                class="w-8 h-8 text-[#f7c600] mr-3"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z"
-                />
-              </svg>
-
-              <div>
-                <div class="text-lg font-bold text-gray-800">Camera-Nikon</div>
-                <div class="text-sm text-gray-500">
-                  Explore Nikon cameras for precision and professional
-                  photography.
-                </div>
-              </div>
-            </div>
-
-            <!-- Brand Card 4 -->
-            <div
-              class="bg-[#e8f0ff] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
-            >
-              <!-- Samsung Camera Icon -->
-              <svg
-                class="w-8 h-8 text-[#1428A0] mr-3"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z"
-                />
-              </svg>
-
-              <div>
-                <div class="text-lg font-bold text-gray-800">
-                  Camera-Samsung
-                </div>
-                <div class="text-sm text-gray-500">
-                  Discover Samsung cameras with advanced features and sleek
-                  design.
-                </div>
-              </div>
-            </div>
-            <!-- Brand card 5 -->
-            <div
-              class="bg-[#f7f7f7] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
-            >
-              <!-- Lumix Camera Icon -->
-              <svg
-                class="w-8 h-8 text-gray-800 mr-3"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z"
-                />
-              </svg>
-
-              <div>
-                <div class="text-lg font-bold text-gray-800">Camera-Lumix</div>
-                <div class="text-sm text-gray-500">
-                  Explore Lumix cameras for advanced photography and crisp image
-                  quality.
-                </div>
-              </div>
-            </div>
-            <!-- Brand card 6 -->
-            <div
-              class="bg-[#e6f9eb] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
-            >
-              <!-- Fujifilm Camera Icon -->
-              <svg
-                class="w-8 h-8 text-[#009640] mr-3"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z"
-                />
-              </svg>
-
-              <div>
-                <div class="text-lg font-bold text-gray-800">
-                  Camera - Fujifilm
-                </div>
-                <div class="text-sm text-gray-500">
-                  Discover Fujifilm cameras for vibrant colors and versatile
-                  photography.
-                </div>
-              </div>
-            </div>
-            <!-- Brand card 6 -->
-            <div
-              class="bg-[#f2f4f7] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
-            >
-              <!-- Olympus Camera Icon -->
-              <svg
-                class="w-8 h-8 text-gray-800 mr-3"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z"
-                />
-              </svg>
-
-              <div>
-                <div class="text-lg font-bold text-gray-800">
-                  Camera - Olympus
-                </div>
-                <div class="text-sm text-gray-500">
-                  Discover Olympus cameras for compact and high-performance
-                  photography.
-                </div>
-              </div>
-            </div>
-            <!-- Brand card 7 -->
-            <div
-              class="bg-[#e8f3ff] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
-            >
-              <!-- GoPro Camera Icon -->
-              <svg
-                class="w-8 h-8 text-[#0077c8] mr-3"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z"
-                />
-              </svg>
-
-              <div>
-                <div class="text-lg font-bold text-gray-800">
-                  Camera - GoPro
-                </div>
-                <div class="text-sm text-gray-500">
-                  Explore GoPro cameras for action-packed adventures and
-                  durability.
-                </div>
-              </div>
-            </div>
-            <!-- Brand card 8 -->
-            <div
-              class="bg-[#f9f5f3] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
-            >
-              <!-- Leica Camera Icon -->
-              <svg
-                class="w-8 h-8 text-[#e62b1e] mr-3"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 2C7.589 2 4 5.589 4 10c0 4.411 3.589 8 8 8s8-3.589 8-8c0-4.411-3.589-8-8-8zm0 14a6 6 0 110-12 6 6 0 010 12zm0-10a4 4 0 100 8 4 4 0 000-8z"
-                />
-              </svg>
-
-              <div>
-                <div class="text-lg font-bold text-gray-800">
-                  Camera - Leica
-                </div>
-                <div class="text-sm text-gray-500">
-                  Discover Leica cameras known for precision optics, timeless
-                  design, and professional photography quality.
-                </div>
-              </div>
-            </div>
-            <!-- Brand card 9 -->
-            <div
-              class="bg-[#e8f3ff] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
-            >
-              <!-- Pentax Camera Icon -->
-              <svg
-                class="w-8 h-8 text-[#0077c8] mr-3"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M21 6h-3.586l-2-2H8.586l-2 2H3a1 1 0 00-1 1v12a1 1 0 001 1h18a1 1 0 001-1V7a1 1 0 00-1-1zm-9 12a5 5 0 110-10 5 5 0 010 10zm7-12h-2V5h2v1z"
-                />
-              </svg>
-
-              <div>
-                <div class="text-lg font-bold text-gray-800">
-                  Camera - Pentax
-                </div>
-                <div class="text-sm text-gray-500">
-                  Discover Pentax cameras known for ruggedness, image quality,
-                  and precision photography.
-                </div>
-              </div>
-            </div>
-            <!-- Brand card 10 -->
-            <div
-              class="bg-[#fff0e6] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
-            >
-              <!-- Kodak Camera Icon -->
-              <svg
-                class="w-8 h-8 text-[#ffcd00] mr-3"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M20 5h-3l-1-1H8l-1 1H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z"
-                />
-              </svg>
-
-              <div>
-                <div class="text-lg font-bold text-gray-800">
-                  Camera - Kodak
-                </div>
-                <div class="text-sm text-gray-500">
-                  Discover Kodak cameras known for classic photography and
-                  vibrant colors.
-                </div>
-              </div>
-            </div>
+            <!-- Add all other brand cards here... -->
           </div>
         </div>
       </div>
     </section>
+
     <!-- Footer -->
-    <footer class="bg-[#0071e3] text-white py-10">
+    <footer class="bg-blue-600 text-white py-10">
       <div
-        class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8"
+        class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6"
       >
-        <!-- Logo & Brand -->
-        <div class="flex items-center gap-3">
-          <svg
-            class="w-8 h-8 text-white"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="M8 12h8"></path>
-          </svg>
-          <span class="text-2xl font-bold">CAMERA-STORE</span>
+        <div class="flex items-center gap-3 text-2xl font-bold">
+          CAMERA-STORE
         </div>
-        <!-- Footer Links -->
-        <div class="flex flex-wrap gap-6 text-base font-medium">
+        <div class="flex flex-wrap gap-4 justify-center md:justify-start">
           <a href="index.html" class="hover:underline">Home</a>
           <a href="shop.html" class="hover:underline">Shop</a>
           <a href="about.html" class="hover:underline">About</a>
           <a href="contact.html" class="hover:underline">Contact</a>
-          <a href="#" class="hover:underline">Privacy Policy</a>
-        </div>
-        <!-- Social Icons -->
-        <div class="flex gap-4">
-          <!-- Icorn Facebook -->
-          <a
-            href="#"
-            aria-label="Facebook"
-            class="hover:text-[#f7f2ee] transition"
-          >
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 5 3.657 9.127 8.438 9.877v-6.987h-2.54v-2.89h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.987C18.343 21.127 22 17 22 12z"
-              />
-            </svg>
-          </a>
-          <!-- Icorn Telegram -->
-          <a
-            href="https://t.me/yourusername"
-            target="_blank"
-            aria-label="Telegram"
-            class="hover:text-[#0088cc] transition duration-300"
-          >
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M9.999 15.172l-.387 4.327c.553 0 .793-.237 1.08-.521l2.588-2.47 5.367 3.925c.984.54 1.684.256 1.938-.91l3.507-16.426c.36-1.671-.604-2.322-1.66-1.92L1.23 10.38c-1.61.63-1.585 1.54-.274 1.95l4.946 1.545L17.57 6.84c.603-.39 1.152-.175.7.25L9.999 15.172z"
-              />
-            </svg>
-          </a>
-          <!-- Icorn Twitter -->
-          <a
-            href="#"
-            aria-label="Twitter"
-            class="hover:text-[#f7f2ee] transition"
-          >
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M22.46 6c-.77.35-1.6.59-2.47.7a4.3 4.3 0 001.88-2.37 8.59 8.59 0 01-2.72 1.04A4.28 4.28 0 0016.11 4c-2.37 0-4.29 1.92-4.29 4.29 0 .34.04.67.11.99C7.69 9.13 4.07 7.13 1.64 4.16c-.37.63-.58 1.36-.58 2.14 0 1.48.75 2.79 1.89 3.56a4.28 4.28 0 01-1.94-.54v.05c0 2.07 1.47 3.8 3.42 4.19-.36.1-.74.16-1.13.16-.28 0-.54-.03-.8-.08.54 1.68 2.11 2.9 3.97 2.93A8.6 8.6 0 012 19.54a12.13 12.13 0 006.56 1.92c7.88 0 12.2-6.53 12.2-12.2 0-.19-.01-.38-.02-.57A8.72 8.72 0 0024 5.5a8.6 8.6 0 01-2.54.7z"
-              />
-            </svg>
-          </a>
-          <!-- Icorn Instagram -->
-          <a
-            href="#"
-            aria-label="Instagram"
-            class="hover:text-[#f7f2ee] transition"
-          >
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 110 10.5 5.25 5.25 0 010-10.5zm0 1.5a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5zm5.25.75a1 1 0 110 2 1 1 0 010-2z"
-              />
-            </svg>
-          </a>
-
-          <!-- Icorn Tiktok -->
-          <a
-            href="#"
-            aria-label="TikTok"
-            class="hover:text-[#f7f2ee] transition"
-          >
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M12.75 2h2.25a4.5 4.5 0 004.5 4.5v2.25a6.75 6.75 0 01-4.5-1.65v7.65a5.25 5.25 0 11-5.25-5.25h.75v2.25h-.75a3 3 0 100 6 3 3 0 003-3V2z"
-              />
-            </svg>
-          </a>
         </div>
       </div>
-      <div class="mt-8 text-center text-sm text-[#f7f2ee]">
+      <div class="mt-6 text-center text-sm">
         © 2023 CAMERA-STORE. All rights reserved.
       </div>
     </footer>
+
+    <script src="../data/products.js"></script>
+    <script>
+      // Mobile Menu Toggle
+      const mobileBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      mobileBtn.addEventListener("click", () =>
+        mobileMenu.classList.toggle("hidden")
+      );
+
+      const productList = document.getElementById("product-list");
+      const searchInput = document.getElementById("search-input");
+      const categoryFilter = document.getElementById("categoryFilter");
+      const sortPrice = document.getElementById("sortPrice");
+
+      // Load Categories
+      const categories = [
+        ...new Set(products.map((p) => p.category).filter(Boolean)),
+      ];
+      categories.forEach(
+        (c) =>
+          (categoryFilter.innerHTML += `<option value="${c}">${c}</option>`)
+      );
+
+      function renderProducts() {
+        let filtered = [...products];
+        const keyword = searchInput.value.toLowerCase();
+        if (keyword)
+          filtered = filtered.filter((p) =>
+            p.name.toLowerCase().includes(keyword)
+          );
+        if (categoryFilter.value)
+          filtered = filtered.filter(
+            (p) => p.category === categoryFilter.value
+          );
+        if (sortPrice.value === "low-high")
+          filtered.sort((a, b) => a.price - b.price);
+        if (sortPrice.value === "high-low")
+          filtered.sort((a, b) => b.price - a.price);
+
+        productList.innerHTML = "";
+        if (filtered.length === 0) {
+          productList.innerHTML =
+            "<p class='col-span-full text-center py-10 text-gray-500'>No products found!</p>";
+          return;
+        }
+        filtered.forEach((p) => {
+          const card = document.createElement("div");
+          card.className =
+            "bg-white p-4 rounded-lg shadow hover:shadow-lg flex flex-col";
+          card.innerHTML = `
+        <img src="../${p.image}" class="h-48 object-cover rounded mb-2"/>
+        <h3 class="font-bold">${p.name}</h3>
+        <p class="text-gray-500 text-sm mb-2 line-clamp-1">${p.description}</p>
+        <p class="font-semibold mb-2">$${p.price.toFixed(2)}</p>
+        <button class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 add-cart">Add to Cart</button>
+      `;
+          card
+            .querySelector(".add-cart")
+            .addEventListener("click", () => addToCart(p));
+          productList.appendChild(card);
+        });
+      }
+
+      function isLoggedIn() {
+        return localStorage.getItem("loggedIn") === "true";
+      }
+      function addToCart(product) {
+        if (!isLoggedIn()) {
+          Swal.fire({
+            icon: "warning",
+            title: "Please log in first",
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          return;
+        }
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const found = cart.find((i) => i.id === product.id);
+        if (found) found.quantity++;
+        else cart.push({ ...product, quantity: 1 });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        Swal.fire({
+          toast: true,
+          position: "top-end",
+          icon: "success",
+          title: "Added to cart",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        updateCartCount();
+      }
+
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const total = cart.reduce((sum, i) => sum + i.quantity, 0);
+        document.getElementById("cart-count").textContent = total;
+      }
+
+      // Cart Modal
+      const cartModal = document.getElementById("cart-modal");
+      document.getElementById("cart-btn").addEventListener("click", () => {
+        renderCartModal();
+        cartModal.classList.remove("hidden");
+      });
+      document
+        .getElementById("close-cart")
+        .addEventListener("click", () => cartModal.classList.add("hidden"));
+      document.getElementById("checkout-btn").addEventListener("click", () => {
+        cartModal.classList.add("hidden");
+        window.location.href = "payment.html";
+      });
+
+      function renderCartModal() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartItemsDiv = document.getElementById("cart-items");
+        const cartTotal = document.getElementById("cart-total");
+        cartItemsDiv.innerHTML = "";
+        if (cart.length === 0) {
+          cartItemsDiv.innerHTML = "<p class='text-gray-500'>Cart is empty</p>";
+          cartTotal.textContent = "$0.00";
+          return;
+        }
+        let total = 0;
+        cart.forEach((item, idx) => {
+          total += item.price * item.quantity;
+          const div = document.createElement("div");
+          div.className = "flex justify-between items-center border-b py-2";
+          div.innerHTML = `
+        <div class="flex items-center gap-2">
+          <img src="../${item.image}" class="w-12 h-12 object-cover rounded"/>
+          <div>
+            <p>${item.name}</p>
+            <p class="text-sm text-gray-500">$${item.price.toFixed(2)} x ${
+            item.quantity
+          }</p>
+          </div>
+        </div>
+        <button data-idx="${idx}" class="text-red-500 font-bold">✕</button>
+      `;
+          div.querySelector("button").addEventListener("click", () => {
+            cart.splice(idx, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            renderCartModal();
+            updateCartCount();
+          });
+          cartItemsDiv.appendChild(div);
+        });
+        cartTotal.textContent = `$${total.toFixed(2)}`;
+      }
+
+      searchInput.addEventListener("input", renderProducts);
+      categoryFilter.addEventListener("change", renderProducts);
+      sortPrice.addEventListener("change", renderProducts);
+
+      // Init
+      renderProducts();
+      updateCartCount();
+    </script>
   </body>
 </html>
-<script>
-  const productList = document.getElementById("product-list");
-  const searchInput = document.getElementById("search-input");
-  const categoryFilter = document.getElementById("categoryFilter");
-  const sortPrice = document.getElementById("sortPrice");
-
-  // ==== FILTER & RENDER FUNCTION ====
-  function renderProducts() {
-    let filtered = [...products];
-
-    // Search
-    const keyword = searchInput.value.toLowerCase().trim();
-    if (keyword) {
-      filtered = filtered.filter(
-        (p) =>
-          p.name.toLowerCase().includes(keyword) ||
-          p.description.toLowerCase().includes(keyword)
-      );
-    }
-
-    // Category
-    // Category
-    const category = categoryFilter.value;
-    if (category) {
-      filtered = filtered.filter(
-        (p) => p.category && p.category.toLowerCase() === category.toLowerCase()
-      );
-    }
-
-    // Sort
-    const sort = sortPrice.value;
-    if (sort === "low-high") filtered.sort((a, b) => a.price - b.price);
-    if (sort === "high-low") filtered.sort((a, b) => b.price - a.price);
-
-    // Render
-    productList.innerHTML = "";
-    if (filtered.length === 0) {
-      productList.innerHTML = `<p class="text-center text-gray-500 w-full py-10 text-lg">No products found!</p>`;
-      return;
-    }
-
-    filtered.forEach((p) => {
-      const card = document.createElement("div");
-      card.className =
-        "bg-white p-5 shadow-lg rounded-xl w-[32.33%] hover:shadow-xl transition h-[450px] cursor-pointer";
-      card.innerHTML = `
-      <img src="../${
-        p.image
-      }" class="w-full h-[55%] object-cover rounded-lg " />
-      <h3 class="text-xl font-bold mt-3">${p.name}</h3>
-      <p class="text-gray-600 text-sm mt-1 line-clamp-1">${p.description}</p>
-      <p class="text-lg font-semibold mt-2">$${p.price.toFixed(2)}</p>
-      <div class="flex gap-5">
-        <a href="ProductDetailPage.html?id=${p.id}">
-          <button class="cursor-pointer mt-4 border-2 px-5 flex items-center py-2 rounded-lg font-semibold hover:bg-blue-800 hover:text-white">View</button>
-        </a>
-        <button class="cursor-pointer mt-4 bg-[#0071e3] text-white px-5 flex items-center py-2 rounded-lg font-semibold hover:bg-[#005bb5] add-cart">
-          Add to Cart <i class="fa-solid fa-cart-plus mx-2"></i>
-        </button>
-      </div>
-    `;
-      card
-        .querySelector(".add-cart")
-        .addEventListener("click", () => addToCart(p));
-      productList.appendChild(card);
-    });
-  }
-
-  // ==== CATEGORY LOADING ====
-  function loadCategories() {
-    const categories = [
-      ...new Set(products.map((p) => p.category).filter(Boolean)),
-    ];
-    categories.forEach((c) => {
-      categoryFilter.innerHTML += `<option value="${c}">${
-        c.charAt(0).toUpperCase() + c.slice(1)
-      }</option>`;
-    });
-  }
-
-  // Check if user is logged in
-  function isLoggedIn() {
-    return localStorage.getItem("loggedIn") === "true";
-  }
-
-  // If user is not logged in, optionally redirect to login page
-  // if (!isLoggedIn()) {
-  //   // Optional: show alert first
-  //   Swal.fire({
-  //     icon: "warning",
-  //     title: "Please log in first",
-  //     toast: true,
-  //     position: "top-end",
-  //     showConfirmButton: false,
-  //     timer: 2000,
-  //   });
-  //   setTimeout(() => {
-  //     window.location.href = "login.html"; // redirect to login page
-  //   }, 1500);
-  // }
-
-  // ==== CART LOGIC ====
-
-  function addToCart(product) {
-    if (!isLoggedIn()) {
-      Swal.fire({
-        icon: "warning",
-        title: "Please log in to add items to the cart",
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 2000,
-      });
-      return;
-    }
-
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const found = cart.find((item) => item.id === product.id);
-    if (found) found.quantity++;
-    else cart.push({ ...product, quantity: 1 });
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    Swal.fire({
-      toast: true,
-      position: "top-end",
-      icon: "success",
-      title: "Added to cart!",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-    updateCartCount();
-  }
-
-  function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.getElementById("cart-count").textContent = totalItems;
-  }
-
-  function renderCartModal() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const cartItemsDiv = document.getElementById("cart-items");
-    const cartTotal = document.getElementById("cart-total");
-    cartItemsDiv.innerHTML = "";
-    if (cart.length === 0) {
-      cartItemsDiv.innerHTML =
-        "<p class='text-gray-500'>Your cart is empty.</p>";
-      cartTotal.textContent = "$0.00";
-      return;
-    }
-    let totalPrice = 0;
-    cart.forEach((item, idx) => {
-      totalPrice += item.price * item.quantity;
-      const itemDiv = document.createElement("div");
-      itemDiv.className =
-        "flex items-center justify-between border-b pb-2 border-gray-200";
-      itemDiv.innerHTML = `
-      <div class="flex items-center gap-3">
-        <img src="../${item.image}" alt="${
-        item.name
-      }" class="w-12 h-12 object-cover rounded">
-        <div>
-          <p class="font-semibold text-gray-800">${item.name}</p>
-          <p class="text-sm text-gray-500">$${item.price.toFixed(
-            2
-          )} x <span class="text-blue-500">${item.quantity}</span></p>
-        </div>
-      </div>
-      <button class="text-red-500 font-bold" data-index="${idx}">✕</button>
-    `;
-      cartItemsDiv.appendChild(itemDiv);
-    });
-    cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
-    cartItemsDiv.querySelectorAll("button").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const idx = btn.dataset.index;
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart.splice(idx, 1);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        renderCartModal();
-        updateCartCount();
-      });
-    });
-  }
-
-  // ==== CART MODAL TOGGLE ====
-  document.getElementById("cart-btn").addEventListener("click", () => {
-    renderCartModal();
-    document.getElementById("cart-modal").classList.remove("hidden");
-  });
-  document.getElementById("close-cart").addEventListener("click", () => {
-    document.getElementById("cart-modal").classList.add("hidden");
-  });
-  document.getElementById("checkout-btn").addEventListener("click", () => {
-    document.getElementById("cart-modal").classList.add("hidden");
-    window.location.href = "payment.html";
-  });
-
-  // ==== EVENT LISTENERS ====
-  searchInput.addEventListener("input", renderProducts);
-  categoryFilter.addEventListener("change", renderProducts);
-  sortPrice.addEventListener("change", renderProducts);
-
-  // ==== INIT ====
-  loadCategories();
-  renderProducts();
-  updateCartCount();
-</script>
