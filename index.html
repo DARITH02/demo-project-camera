@@ -140,7 +140,8 @@
 
           <!-- Login Button -->
           <a
-            href="./page/login.html"
+            id="loginBtn"
+            href="./login.html"
             class="bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3] border border-[#0071e3] transition"
           >
             Login
@@ -301,53 +302,75 @@
       </div>
     </section>
 
-    <section class="py-16 bg-[#f7f7f7]">
-      <div class="overflow-hidden relative">
-        <div class="flex space-x-8 animate-marquee">
-          <!-- Repeat your brand cards here -->
-          <div
-            class="brand-card bg-[#f7f2ee] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
+    <!-- Brands Marquee -->
+    <section class="bg-white py-6">
+      <div class="max-w-7xl mx-auto px-4">
+        <!-- Header -->
+        <div class="flex items-center mb-4">
+          <svg
+            class="w-8 h-8 text-[#0071e3] mr-2"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
           >
-            <svg
-              class="w-8 h-8 text-[#0071e3] mr-3"
-              fill="currentColor"
-              viewBox="0 0 24 24"
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 12h8"></path>
+          </svg>
+          <span class="text-2xl font-bold text-[#0071e3]"
+            >Camera-Shop Brands</span
+          >
+        </div>
+
+        <!-- Marquee -->
+        <div class="overflow-hidden relative">
+          <div class="flex space-x-8 animate-marquee">
+            <!-- Repeat your brand cards here -->
+            <div
+              class="brand-card bg-[#f7f2ee] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
             >
-              <path
-                d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z"
-              />
-            </svg>
-            <div>
-              <div class="text-lg font-bold text-gray-800">Camera-Sony</div>
-              <div class="text-sm text-gray-500">
-                High-quality Sony cameras for professional and casual
-                photography.
+              <svg
+                class="w-8 h-8 text-[#0071e3] mr-3"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z"
+                />
+              </svg>
+              <div>
+                <div class="text-lg font-bold text-gray-800">Camera-Sony</div>
+                <div class="text-sm text-gray-500">
+                  High-quality Sony cameras for professional and casual
+                  photography.
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Duplicate more cards here or use your 10+ cards -->
-          <div
-            class="brand-card bg-[#fff0f0] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
-          >
-            <svg
-              class="w-8 h-8 text-[#D31C1C] mr-3"
-              fill="currentColor"
-              viewBox="0 0 24 24"
+            <!-- Duplicate more cards here or use your 10+ cards -->
+            <div
+              class="brand-card bg-[#fff0f0] rounded-xl shadow-md p-4 flex items-center min-w-[220px] hover:scale-105 hover:shadow-lg transition"
             >
-              <path
-                d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z"
-              />
-            </svg>
-            <div>
-              <div class="text-lg font-bold text-gray-800">Camera-Canon</div>
-              <div class="text-sm text-gray-500">
-                Explore Canon cameras for reliable and high-quality photography.
+              <svg
+                class="w-8 h-8 text-[#D31C1C] mr-3"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M20 5h-3.172l-1.414-1.414A2 2 0 0014 3H10a2 2 0 00-1.414.586L7.172 5H4a2 2 0 00-2 2v11a2 2 0 002 2h16a2 2 0 002-2V7a2 2 0 00-2-2zm-8 12a4 4 0 110-8 4 4 0 010 8zm7-9h-2V6h2v2z"
+                />
+              </svg>
+              <div>
+                <div class="text-lg font-bold text-gray-800">Camera-Canon</div>
+                <div class="text-sm text-gray-500">
+                  Explore Canon cameras for reliable and high-quality
+                  photography.
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Add all other brand cards here... -->
+            <!-- Add all other brand cards here... -->
+          </div>
         </div>
       </div>
     </section>

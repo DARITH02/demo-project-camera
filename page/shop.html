@@ -272,6 +272,21 @@
           (categoryFilter.innerHTML += `<option value="${c}">${c}</option>`)
       );
 
+      function generateStars(rating) {
+        const full = Math.floor(rating);
+        const half = rating % 1 >= 0.5 ? 1 : 0;
+        const empty = 5 - full - half;
+
+        let stars = "";
+        for (let i = 0; i < full; i++)
+          stars += `<i class="fa-solid fa-star text-yellow-400"></i>`;
+        for (let i = 0; i < half; i++)
+          stars += `<i class="fa-solid fa-star-half-stroke text-yellow-400"></i>`;
+        for (let i = 0; i < empty; i++)
+          stars += `<i class="fa-regular fa-star text-yellow-400"></i>`;
+        return stars;
+      }
+
       function renderProducts() {
         let filtered = [...products];
         const keyword = searchInput.value.toLowerCase();
@@ -303,7 +318,20 @@
         <h3 class="font-bold">${p.name}</h3>
         <p class="text-gray-500 text-sm mb-2 line-clamp-1">${p.description}</p>
         <p class="font-semibold mb-2">$${p.price.toFixed(2)}</p>
-        <button class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700 add-cart">Add to Cart</button>
+
+          <div class="mb-2">
+        ${generateStars(p.rating)} ${p.rating} | <span>${p.views} views</span>
+      </div>
+        <div class="flex w-full  justify-between">
+          <button class="bg-blue-600 text-white px-3 flex gap-2 rounded hover:bg-blue-700 add-cart items-center cursor-pointer uppercase">Add to Cart<i class="fa-solid fa-cart-shopping"></i></button>
+
+        <button class="bg-blue-600 text-white rounded hover:bg-blue-700">
+          <a href="./ProductDetailPage.html?id=${
+            p.id
+          }" class="px-3 py-2 text-white  flex gap-2 items-center">View<i class="fa-solid fa-eye"></i></a>
+          </button>
+      
+      </div>
       `;
           card
             .querySelector(".add-cart")
