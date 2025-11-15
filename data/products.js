@@ -1,4 +1,3 @@
-// products.js
 const products = [
   {
     id: "7",
@@ -19,7 +18,10 @@ const products = [
       Stabilization: "8.5-stop",
     },
     category: "Canon",
+    rating: 4.8,
+    views: 1530,
   },
+
   {
     id: "8",
     name: "FUJIFILM X100VI Digital Camera (Silver)",
@@ -38,8 +40,9 @@ const products = [
       Processor: "X-Processor 5",
       Format: "35mm Equivalent",
     },
-
     category: "Sony",
+    rating: 4.9,
+    views: 2230,
   },
 
   {
@@ -60,8 +63,9 @@ const products = [
       Processor: "X-Processor 5",
       Format: "35mm Equivalent",
     },
-
     category: "Sony",
+    rating: 4.9,
+    views: 1980,
   },
 
   {
@@ -83,15 +87,16 @@ const products = [
       Processor: "X-Processor 5",
       Video: "4K UHD 30p",
     },
-
     category: "Sony",
+    rating: 4.7,
+    views: 1420,
   },
 
   {
     id: "11",
     name: "Canon EOS R50 V Mirrorless Camera with 14-30mm f/4-6.3 Lens",
     description:
-      "Bundling the stylish, video-friendly camera body with a versatile lens, the Canon EOS R50 V Mirrorless Camera with 14-30mm Lens pairs the black multimedia mirrorless camera with the RF-S 14-30mm f/4.5-6.3 IS STM PZ lens. Ideal for content creators and vloggers, featuring 24.2MP APS-C CMOS Sensor and DIGIC X Image Processor.",
+      "24.2MP APS-C CMOS Sensor, DIGIC X Image Processor, Perfect for creators & vloggers.",
     price: 849.0,
     image:
       "./images/Canon EOS R50 V Mirrorless Camera with 14-30mm f4-6.3 Lens/p1.jpg",
@@ -104,8 +109,10 @@ const products = [
       Sensor: "24.2MP APS-C CMOS",
       Lens: "RF-S 14-30mm f/4.5-6.3 IS STM PZ",
       Processor: "DIGIC X",
-      Video: "UHD 4K60p Cropped / 4K30 6K Oversampled",
+      Video: "UHD 4K60p",
     },
     category: "Canon",
+    rating: 4,
+    views: 1190,
   },
 ];

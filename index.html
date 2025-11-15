@@ -5,17 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <script
+      src="https://kit.fontawesome.com/9152de16db.js"
+      crossorigin="anonymous"
+    ></script>
+
     <script src="./data/products.js"></script>
 
     <style>
       /* Hover effect on card */
       .card-hover {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        z-index: 0;
       }
 
       .card-hover:hover {
-        transform: translateY(-10px) scale(1.05);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        transform: scale(1.01);
+        cursor: pointer;
+        /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); */
       }
 
       /* .container.h1{
@@ -82,7 +90,7 @@
         </form>
     </nav> -->
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 w-full bg-[#f7f7f7] shadow-md">
+    <nav class="fixed top-0 left-0 w-full bg-[#f7f7f7] shadow-md z-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
           <!-- Logo -->
@@ -100,24 +108,24 @@
               >Shop</a
             >
             <a
-              href="/page/about.html"
+              href="./page/about.html"
               class="text-gray-700 hover:text-[#0071e3] font-medium transition"
               >About</a
             >
             <a
-              href="/page/contact.html"
+              href="./page/contact.html"
               class="text-gray-700 hover:text-[#0071e3] font-medium transition"
               >Contact</a
             >
           </div>
-          <form class="flex items-center space-x-2">
-            <button
-              type="submit"
-              class="bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3] border border-[#0071e3] transition"
-            >
-              Login
-            </button>
-          </form>
+
+          <a
+            id="loginBtn"
+            href="./page/login.html"
+            class="bg-[#0071e3] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#f7f2ee] hover:text-[#0071e3] border border-[#0071e3] transition"
+          >
+            Login
+          </a>
         </div>
       </div>
     </nav>
@@ -815,38 +823,67 @@
 
 <!-- <script src="./page/data/products.js"></script> -->
 <script>
-  const popularCameras = document.getElementById("popular-cameras");
-  function renderPopularCameras() {
-    popularCameras.innerHTML = ""; // clear
+  // Function to generate star ratings
+  function generateStars(rating) {
+    const full = Math.floor(rating);
+    const half = rating % 1 >= 0.5 ? 1 : 0;
+    const empty = 5 - full - half;
 
-    products.forEach((p) => {
-      const card = document.createElement("div");
-      card.innerHTML = `
-      <img src="${p.image}" alt="${p.name}" class="w-full h-60 object-cover">
-      <div class="p-6 flex-1 flex flex-col line-clamp-1">
-        <div class="flex items-center justify-between mb-2">
-          <h3 class="text-xl font-semibold text-gray-800">${p.name}</h3>
-          <span class="text-[#0071e3] text-lg font-bold">$${p.price.toFixed(
-            2
-          )}</span>
-        </div>
-        <p class="text-gray-600 mb-4 flex-1">${p.description}</p>
-        <div class="flex items-center mb-4">
-          <svg class="w-5 h-5 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.921-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.197-1.539-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.049 9.393c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.966z"/>
-          </svg>
-          <span class="text-gray-700 font-medium">${p.rating || "N/A"}</span>
-        </div>
-        <a href="./page/ProductDetailPage.html?id=${p.id}" 
-           class="mt-auto bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 text-center rounded-lg font-semibold transition">
-          View Details
-        </a>
-      </div>
-    `;
-
-      popularCameras.appendChild(card);
-    });
+    let stars = "";
+    for (let i = 0; i < full; i++)
+      stars += `<i class="fa-solid fa-star text-yellow-400"></i>`;
+    for (let i = 0; i < half; i++)
+      stars += `<i class="fa-solid fa-star-half-stroke text-yellow-400"></i>`;
+    for (let i = 0; i < empty; i++)
+      stars += `<i class="fa-regular fa-star text-yellow-400"></i>`;
+    return stars;
   }
 
-  renderPopularCameras();
+  // Render popular cameras from products.js
+  const popularCameras = document.getElementById("popular-cameras");
+
+  const card = document.createElement("div");
+  // Filter products with rating > 4
+  const topRatedProducts = products.filter((product) => product.rating > 4);
+
+  // Render each top-rated product
+  topRatedProducts.forEach((product) => {
+    const card = document.createElement("div");
+    card.className =
+      "bg-white rounded-xl shadow-lg overflow-hidden flex flex-col hover:shadow-sm transition card-hover";
+    card.innerHTML = `
+    <img src="${product.image}" alt="${
+      product.name
+    }" class="w-full h-64 object-cover p-4">
+    <div class="p-4 flex-1 flex flex-col justify-between">
+      <h3 class="text-xl font-semibold mb-2">${product.name}</h3>
+      <p class="text-gray-600 mb-2 line-clamp-1">${product.description}</p>
+     
+        <div class="mb-2">
+        ${generateStars(product.rating)} ${product.rating} | <span>${
+      product.views
+    } views</span>
+      </div>
+      <div class="text-lg font-bold flex items-center justify-around">
+        <span class="block">$${product.price.toFixed(2)}</span>
+        <a href="./page/ProductDetailPage.html?id=${
+          product.id
+        }" class="px-3 py-2 bg-blue-700 text-white rounded-lg cursor-pointer">View</a>
+      </div>
+    </div>
+  `;
+    document.getElementById("popular-cameras").appendChild(card);
+  });
+
+  const loginBtn = document.getElementById("loginBtn");
+  // Check login status
+  if (localStorage.getItem("loggedIn") === "true") {
+    loginBtn.textContent = "Logout"; // Change text
+    loginBtn.href = "#"; // Remove href
+    loginBtn.addEventListener("click", () => {
+      localStorage.removeItem("loggedIn");
+      localStorage.removeItem("username");
+      window.location.href = "./page/login.html"; // Redirect after logout
+    });
+  }
 </script>
