@@ -83,7 +83,7 @@
           <button id="mobileMenuBtn" class="text-2xl text-gray-700">
             <i class="fa-solid fa-bars"></i>
           </button>
-          <button id="cart-btn" class="relative text-2xl text-gray-700">
+          <button id="cart-btn-mobile" class="relative text-2xl text-gray-700">
             🛒
             <span
               id="cart-count"
@@ -106,12 +106,13 @@
         <a href="./about.html" class="block p-3 hover:bg-gray-100">About</a>
         <a href="./contact.html" class="block p-3 hover:bg-gray-100">Contact</a>
         <!-- Mobile Login -->
-        <!-- <a
+        <a
+          href="#"
           id="loginBtnMobile"
           class="block p-3 bg-[#0071e3] text-white rounded-lg text-center mt-2 hover:bg-[#f7f2ee] hover:text-[#0071e3]"
         >
           Login
-        </a> -->
+        </a>
       </nav>
     </header>
     <!-- Search & Filters -->
@@ -475,6 +476,13 @@
         renderCartModal();
         cartModal.classList.remove("hidden");
       });
+
+      document
+        .getElementById("cart-btn-mobile")
+        .addEventListener("click", () => {
+          renderCartModal();
+          cartModal.classList.remove("hidden");
+        });
       document
         .getElementById("close-cart")
         .addEventListener("click", () => cartModal.classList.add("hidden"));
@@ -541,25 +549,29 @@
   });
 
   // Login/Logout logic for desktop and mobile
-  const loginBtnDesktop = document.getElementById("loginBtnDesktop");
   const loginBtnMobile = document.getElementById("loginBtnMobile");
 
   function updateLoginButtons() {
     const loggedIn = localStorage.getItem("loggedIn") === "true";
-    [loginBtnDesktop, loginBtnMobile].forEach((btn) => {
-      if (loggedIn) {
-        btn.textContent = "Logout";
-        btn.href = "#";
-        btn.onclick = () => {
-          localStorage.removeItem("loggedIn");
-          localStorage.removeItem("username");
-          localStorage.clear();
-          updateLoginButtons(); // refresh buttons
-          mobileMenu.classList.add("hidden"); // close mobile menu after logout
-          window.location.href = "./page/login.html";
-        };
-      }
-    });
+
+    if (!loginBtnMobile) {
+      console.error("loginBtnMobile NOT FOUND!");
+      return;
+    }
+
+    if (loggedIn) {
+      loginBtnMobile.textContent = "Logout";
+      loginBtnMobile.href = "#";
+
+      loginBtnMobile.onclick = () => {
+        localStorage.clear(); // remove all login data
+        mobileMenu.classList.add("hidden");
+        window.location.href = "./login.html";
+      };
+    } else {
+      loginBtnMobile.textContent = "Login";
+      loginBtnMobile.href = "./login.html";
+    }
   }
 
   updateLoginButtons();
